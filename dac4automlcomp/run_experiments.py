@@ -4,7 +4,7 @@ import numpy as np
 
 def run_experiment(dac_opt_obj, max_steps=10_000, eval_every=1000, num_repetitions=5, num_eval_episodes=5):
     '''
-
+    #TODO defining train/test splits and the distribution for the contexts of the DACEnv.
     '''
 
     screen_output_width = os.get_terminal_size().columns
