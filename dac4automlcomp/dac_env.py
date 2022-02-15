@@ -4,6 +4,7 @@ import numpy as np
 from gym.utils import EzPickle, seeding
 from typing import Optional, Union, List, Dict
 from collections import namedtuple
+from itertools import count, cycle
 if sys.version_info.minor >= 8:
     from typing import Protocol
 else:
@@ -51,6 +52,11 @@ class DACEnv(gym.Env, EzPickle):
         self.n_step = None
         self.instance = None
         self.cutoff = cutoff
+
+        if self.n_instances == np.inf:
+            self.instance_count = count(start=0, step=1)
+        else:
+            self.instance_count = cycle(range(self.n_instances))
 
     def _step(self):
         self.n_step += 1
