@@ -1,5 +1,4 @@
 import gym
-import utils
 import sys
 import numpy as np
 from gym.utils import EzPickle, seeding
@@ -9,6 +8,8 @@ if sys.version_info.minor >= 8:
     from typing import Protocol
 else:
     from typing_extensions import Protocol # type: ignore
+
+import dac4automlcomp.utils as utils
 
 
 # Wraps named tuple in order to define instances with different fields
