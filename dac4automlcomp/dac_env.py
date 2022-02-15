@@ -92,5 +92,5 @@ class DACEnv(gym.Env, EzPickle):
         return seed
 
     def seed(self, seed=None):
-        self.np_random, self.seed = seeding.np_random(seed)
+        self.np_random, seed = seeding.np_random(seed)
         return [seed]
