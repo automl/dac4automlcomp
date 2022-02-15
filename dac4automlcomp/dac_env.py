@@ -2,7 +2,7 @@ import gym
 import sys
 import numpy as np
 from gym.utils import EzPickle, seeding
-from typing import Optional, Union, List, Dict
+from typing import Optional, Union, List, Dict, Any
 from collections import namedtuple
 from itertools import count, cycle
 if sys.version_info.minor >= 8:
@@ -34,7 +34,7 @@ class Generator(Protocol):
 class DACEnv(gym.Env, EzPickle):
     def __init__(self,
         generator: Generator = None,
-        instance_set: Dict = None,
+        instance_set: Dict[Any, Instance] = None,
         n_instances: Union[int, float] = np.inf,
         device: str = "cpu",
         cutoff: int = 10000
