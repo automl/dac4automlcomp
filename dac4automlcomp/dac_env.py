@@ -50,7 +50,7 @@ class DACEnv(gym.Env, EzPickle):
         self.device = device
         self.seed()
         self.n_step = None
-        self.instance = None
+        self.instance: Optional[Instance] = None
         self.cutoff = cutoff
 
         if self.n_instances == np.inf:
