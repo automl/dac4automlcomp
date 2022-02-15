@@ -16,7 +16,7 @@ AUTHORS = (
 
 AUTHOR_EMAIL = "rajanr@cs.uni-freiburg.de"
 
-#TODO
+# TODO
 LICENSE = "Apache License, Version 2.0"
 
 with open("README.md", "r", encoding="utf-8") as fh:
@@ -24,7 +24,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="dac4automlcomp",
-    py_modules=['dac4automlcomp.run_experiments'],
+    py_modules=["dac4automlcomp.run_experiments"],
     version="0.0.1",
     author=AUTHORS,
     author_email=AUTHOR_EMAIL,
@@ -38,7 +38,7 @@ setup(
     },
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: Apache Software License", #TODO
+        "License :: OSI Approved :: Apache Software License",  # TODO
         "Operating System :: OS Independent",
         "Natural Language :: English",
         "Intended Audience :: Developers",
@@ -50,6 +50,5 @@ setup(
     python_requires=">=3.8",
     setup_requires=[""],
     install_requires=["", ""],
-    extras_require={
-    },
+    extras_require={},
 )

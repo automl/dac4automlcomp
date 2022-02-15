@@ -1,96 +1,90 @@
-import gym
-import sys
-import numpy as np
-from gym.utils import EzPickle, seeding
-from typing import Optional, Union, List, Dict, Any
-from collections import namedtuple
+import abc
+from dataclasses import dataclass, field
+from functools import singledispatchmethod
 from itertools import count, cycle
-if sys.version_info.minor >= 8:
-    from typing import Protocol
-else:
-    from typing_extensions import Protocol # type: ignore
+from typing import Generic, List, TypeVar, Union
 
-import dac4automlcomp.utils as utils
+import gym
+import numpy as np
+import torch
+from gym.utils import EzPickle, seeding
 
-
-# Wraps named tuple in order to define instances with different fields
-class Instance(object):
-    def __init__(self, name: str, fields: List[str]):
-        self.name = name
-        self.i = namedtuple(name, fields)
-
-    def __getattr__(self, item):
-        if item == "name":
-            return self.name
-        else:
-            return getattr(self.instance, item)
+T = TypeVar("T")
 
 
-class Generator(Protocol):
-    def __call__(self, rng: np.random.RandomState, **kwargs: int) -> Instance:
-        ...
+@dataclass(init=False)  # type: ignore
+class Generator(Generic[T], abc.ABC):
+    _internal_rng: np.random.RandomState = np.random.RandomState(None)
+    _instance_seeds: List[int] = field(default_factory=lambda: [])
+
+    @abc.abstractmethod
+    def random_instance(self, rng: np.random.RandomState) -> T:
+        pass
+
+    def get_instance(self, instance_idx) -> T:
+        while instance_idx >= len(self._instance_seeds):
+            seed = self._internal_rng.randint(1, 4294967295, dtype=np.int64)
+            self._instance_seeds.append(seed)
+        seed = self._instance_seeds[instance_idx]
+        rng = np.random.RandomState(seed)
+        return self.random_instance(rng)
+
+    def seed(self, seed):
+        self._internal_rng = np.random.RandomState(seed)  # Do not use it!
+        self._instance_seeds: List[int] = []
 
 
-class DACEnv(gym.Env, EzPickle):
-    def __init__(self,
-        generator: Generator = None,
-        instance_set: Dict[Any, Instance] = None,
-        n_instances: Union[int, float] = np.inf,
-        device: str = "cpu",
-        cutoff: int = 10000
+class GeneratorIterator(Generic[T]):
+    def __init__(
+        self, generator: Generator[T], n_instances: Union[int, float] = np.inf
     ):
-        if generator:
-            self.generator = generator
-        elif instance_set:
-            self.instance_set = instance_set
-        else:
-            raise ValueError("Either instance set or instance generator is required")
-
+        self.generator = generator
         self.n_instances = n_instances
-        self.device = device
-        self.seed()
-        self.n_step = None
-        self.instance: Optional[Instance] = None
-        self.cutoff = cutoff
-
+        self.instance_count: Union[cycle[int], count[int]]
         if self.n_instances == np.inf:
             self.instance_count = count(start=0, step=1)
         else:
+            assert isinstance(self.n_instances, int)
             self.instance_count = cycle(range(self.n_instances))
 
-    def _step(self):
-        self.n_step += 1
-        done = self.n_step >= self.cutoff
-        return done
+    def __iter__(self):
+        return self
 
-    def _reset(self, instance: Optional[Union[Instance, int]] = None):
-        self.n_step = 0
+    def __next__(self):
+        instance_idx = next(self.instance_count)
+        return self.generator.get_instance(instance_idx)
 
-        if isinstance(instance, Instance):
-            self.instance = instance
-            seed = None
+    def __getitem__(self, instance_idx):
+        return self.generator.get_instance(instance_idx)
+
+
+class DACEnv(gym.Env, EzPickle):
+    def __init__(
+        self,
+        generator: Generator,
+        n_instances: Union[int, float] = np.inf,
+        device: str = "cpu",
+    ):
+        self.generator = generator
+        self.n_instances = n_instances
+        self.device = device
+        self.seed()
+
+    @singledispatchmethod
+    def get_instance(self, instance):
+        if instance is None:
+            return next(self.generator_iterator)
         else:
-            if instance is None:
-                instance_idx = next(self.instance_count)
-            elif isinstance(instance, int):
-                assert instance < self.n_instances
-                instance_idx = instance
-            else:
-                raise ValueError("Invalid instance argument, either provide type 'Instance' or an 'int' ID.")
+            raise NotImplementedError
 
-            if self.generator:
-                self.instance, seed = utils.get_instance(
-                    self.generator, instance_idx, self.np_random
-                )
-            else:
-                self.instance = self.instance_set[instance_idx]
-                seed = None
-
-        assert isinstance(self.instance, Instance)
-        # Get raw instance fields
-        self.instance = self.instance.i
-        return seed
+    @get_instance.register
+    def _(self, instance: int):
+        return self.generator_iterator[instance]
 
     def seed(self, seed=None):
-        self.np_random, seed = seeding.np_random(seed)
+        self.np_random, _ = seeding.np_random(seed)
+        self.generator.seed(seed)
+        self.generator_iterator = GeneratorIterator(self.generator, self.n_instances)
+        torch.backends.cudnn.benchmark = False
+        torch.backends.cudnn.deterministic = True
         return [seed]
