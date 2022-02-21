@@ -46,6 +46,7 @@ setup(
         "Intended Audience :: Science/Research",
         "Topic :: Scientific/Engineering :: Artificial Intelligence",
     ],
+    packages=packages,
     # package_dir={"": "src"},
     python_requires=">=3.8",
     setup_requires=[""],
