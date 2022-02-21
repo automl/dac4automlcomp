@@ -23,7 +23,7 @@ def run_experiment(
 
     Parameters
     ----------
-    dac_policy_obj : AbstractPolicy
+    dac_policy_obj : DACPolicy
 
     max_steps : int
 

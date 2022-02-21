@@ -1,8 +1,14 @@
-import abc
+import sys
 from dataclasses import dataclass, field
 from functools import singledispatchmethod
 from itertools import count, cycle
 from typing import Generic, List, TypeVar, Union
+from abc import ABC, abstractmethod
+
+if sys.version_info.minor >= 8:
+    from typing import Protocol, runtime_checkable
+else:
+    from typing_extensions import Protocol, runtime_checkable  # type: ignore
 
 import gym
 import numpy as np
@@ -12,11 +18,11 @@ T = TypeVar("T")
 
 
 @dataclass(init=False)  # type: ignore
-class Generator(Generic[T], abc.ABC):
+class Generator(Generic[T], ABC):
     _internal_rng: np.random.RandomState = np.random.RandomState(None)
     _instance_seeds: List[int] = field(default_factory=lambda: [])
 
-    @abc.abstractmethod
+    @abstractmethod
     def random_instance(self, rng: np.random.RandomState) -> T:
         pass
 
@@ -83,3 +89,24 @@ class DACEnv(gym.Env, EzPickle):
         self.generator.seed(seed)
         self.generator_iterator = GeneratorIterator(self.generator, self.n_instances)
         return [seed]
+
+
+@runtime_checkable
+class StatefulPolicy(Protocol):
+    def reset(self, instance):
+        pass
+
+
+class DACPolicy(ABC):
+    @abstractmethod
+    def act(self, state):
+        ...
+
+    @abstractmethod
+    def save(self, f):
+        ...
+
+    @classmethod
+    @abstractmethod
+    def load(cls, f):
+        ...
