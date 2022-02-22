@@ -9,8 +9,7 @@ T = TypeVar("T")
 
 class Generator(Generic[T], ABC):
     def __init__(self):
-        self._internal_rng: np.random.RandomState = np.random.RandomState(None)
-        self._instance_seeds: List[int] = []
+        self.seed(None)
 
     @abstractmethod
     def random_instance(self, rng: np.random.RandomState) -> T:
