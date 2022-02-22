@@ -1,3 +1,4 @@
+from abc import abstractmethod
 from functools import singledispatchmethod
 from typing import Optional, TypeVar, Union
 
@@ -20,8 +21,13 @@ class DACEnv(gym.Env, EzPickle):
         self.n_instances = n_instances
         self.seed()
 
+    @abstractmethod
+    def step(self, action):
+        raise NotImplementedError
+
+    @abstractmethod
     def reset(self, instance: Optional[Union[int, T]]):
-        pass
+        raise NotImplementedError
 
     @singledispatchmethod
     def get_instance(self, instance):
