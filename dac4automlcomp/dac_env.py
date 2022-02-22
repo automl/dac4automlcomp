@@ -1,6 +1,6 @@
 from abc import abstractmethod
 from functools import singledispatchmethod
-from typing import Optional, TypeVar, Union
+from typing import Optional, TypeVar, Union, Generic
 
 import gym
 import numpy as np
@@ -11,7 +11,7 @@ from dac4automlcomp.generator import Generator, GeneratorIterator
 T = TypeVar("T")
 
 
-class DACEnv(gym.Env, EzPickle):
+class DACEnv(gym.Env, EzPickle, Generic[T]):
     def __init__(
         self,
         generator: Generator[T],
@@ -19,6 +19,7 @@ class DACEnv(gym.Env, EzPickle):
     ):
         self.generator = generator
         self.n_instances = n_instances
+        self._current_instance: T
         self.seed()
 
     @abstractmethod
@@ -27,16 +28,22 @@ class DACEnv(gym.Env, EzPickle):
 
     @abstractmethod
     def reset(self, instance: Optional[Union[int, T]]):
-        raise NotImplementedError
+        self._current_instance = self._get_instance(instance)
+
+    @property
+    def current_instance(self) -> T:
+        if hasattr(self, "_current_instance"):
+            return self._current_instance
+        raise ValueError("Call reset!")
 
     @singledispatchmethod
-    def get_instance(self, instance):
+    def _get_instance(self, instance):
         if instance is None:
             return next(self.generator_iterator)
         else:
             raise NotImplementedError
 
-    @get_instance.register
+    @_get_instance.register
     def _(self, instance: int):
         return self.generator_iterator[instance]
 
