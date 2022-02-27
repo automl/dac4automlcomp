@@ -1,6 +1,6 @@
 from abc import abstractmethod
 from functools import singledispatchmethod
-from typing import Optional, TypeVar, Union, Generic
+from typing import Optional, TypeVar, Union, Generic, Type
 
 import gym
 import numpy as np
@@ -22,12 +22,15 @@ class DACEnv(gym.Env, EzPickle, Generic[T]):
         self._current_instance: T
         self.seed()
 
+    def __init_subclass__(cls, instance_type: T):
+        cls._get_instance.register(instance_type, lambda x: x)
+
     @abstractmethod
     def step(self, action):
         raise NotImplementedError
 
     @abstractmethod
-    def reset(self, instance: Optional[Union[int, T]]):
+    def reset(self, instance: Union[int, T]):
         self._current_instance = self._get_instance(instance)
 
     @property
