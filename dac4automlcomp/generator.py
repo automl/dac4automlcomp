@@ -4,18 +4,19 @@ from typing import Generic, List, TypeVar, Union
 
 import numpy as np
 
-T = TypeVar("T")
+
+InstanceType = TypeVar("InstanceType")
 
 
-class Generator(Generic[T], ABC):
+class Generator(Generic[InstanceType], ABC):
     def __init__(self):
         self.seed(None)
 
     @abstractmethod
-    def random_instance(self, rng: np.random.RandomState) -> T:
+    def random_instance(self, rng: np.random.RandomState) -> InstanceType:
         pass
 
-    def get_instance(self, instance_idx) -> T:
+    def get_instance(self, instance_idx) -> InstanceType:
         while instance_idx >= len(self._instance_seeds):
             seed = self._internal_rng.randint(1, 4294967295, dtype=np.int64)
             self._instance_seeds.append(seed)
@@ -28,9 +29,9 @@ class Generator(Generic[T], ABC):
         self._instance_seeds: List[int] = []
 
 
-class GeneratorIterator(Generic[T]):
+class GeneratorIterator(Generic[InstanceType]):
     def __init__(
-        self, generator: Generator[T], n_instances: Union[int, float] = np.inf
+        self, generator: Generator[InstanceType], n_instances: Union[int, float] = np.inf
     ):
         self.generator = generator
         self.n_instances = n_instances
