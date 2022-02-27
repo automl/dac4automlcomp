@@ -9,14 +9,20 @@ InstanceType = TypeVar("InstanceType")
 
 
 class Generator(Generic[InstanceType], ABC):
+    """Instance generator for a DAC problem."""
     def __init__(self):
         self.seed(None)
 
     @abstractmethod
     def random_instance(self, rng: np.random.RandomState) -> InstanceType:
+        """Sample a random instance.
+        This function should be implemented by subclasses and should be deterministic,
+        meaning given the same random state it should always return the same instance."""
         pass
 
-    def get_instance(self, instance_idx) -> InstanceType:
+    def get_instance(self, instance_idx: int) -> InstanceType:
+        """Return `instance_idx`th instance from the instance set.
+        Using this function does not affect determinitic behaviour of the generator"""
         while instance_idx >= len(self._instance_seeds):
             seed = self._internal_rng.randint(1, 4294967295, dtype=np.int64)
             self._instance_seeds.append(seed)
@@ -25,11 +31,13 @@ class Generator(Generic[InstanceType], ABC):
         return self.random_instance(rng)
 
     def seed(self, seed):
+        """Set the random state of the generator."""
         self._internal_rng = np.random.RandomState(seed)  # Do not use it!
         self._instance_seeds: List[int] = []
 
 
 class GeneratorIterator(Generic[InstanceType]):
+    """Generator iterator to cycle through instances of the generator."""
     def __init__(
         self, generator: Generator[InstanceType], n_instances: Union[int, float] = np.inf
     ):
