@@ -1,3 +1,4 @@
+from pathlib import Path
 from abc import ABC, abstractmethod
 
 
@@ -52,12 +53,15 @@ class DACPolicy(ABC):
         pass
 
     @abstractmethod
-    def save(self, f):
+    def save(self, path: Path):
+        """Saves the policy to given folder path."""
         pass
+
 
     @classmethod
     @abstractmethod
-    def load(cls, f):
+    def load(cls, path: Path):
+        """Loads the policy from given folder path."""
         pass
 
 

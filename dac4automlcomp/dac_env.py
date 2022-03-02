@@ -72,7 +72,7 @@ class DACEnv(gym.Env, EzPickle, Generic[InstanceType]):
         raise ValueError("Call super().reset(instance)")
 
     @singledispatchmethod
-    def _to_instance(self, instance):
+    def _to_instance(self, instance) -> InstanceType:
         """Generic method to parse `instance` to `InstanceType` type.
         New types can be registered using `DACEnv._to_instance.register`
 
