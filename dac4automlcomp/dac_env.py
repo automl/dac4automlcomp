@@ -40,8 +40,8 @@ class DACEnv(gym.Env, EzPickle, Generic[InstanceType]):
         self.seed()
 
     def __init_subclass__(cls, instance_type: InstanceType):
-        """Automatically register instance_type to `_get_instance` method in subclasses."""
-        cls._get_instance.register(instance_type, lambda x: x)
+        """Automatically register instance_type to `_to_instance` method in subclasses."""
+        cls._to_instance.register(instance_type, lambda x: x)
 
     @abstractmethod
     def step(self, action):
@@ -62,7 +62,7 @@ class DACEnv(gym.Env, EzPickle, Generic[InstanceType]):
             instance (Union[int, InstanceType]): The problem instance the target algorithm should solve. This can be any
             instance of InstanceType, or an integer ~ i'th instance generated from the target distribution
         """
-        self._current_instance = self._get_instance(instance)
+        self._current_instance = self._to_instance(instance)
 
     @property
     def current_instance(self) -> InstanceType:
@@ -72,22 +72,22 @@ class DACEnv(gym.Env, EzPickle, Generic[InstanceType]):
         raise ValueError("Call super().reset(instance)")
 
     @singledispatchmethod
-    def _get_instance(self, instance):
+    def _to_instance(self, instance):
         """Generic method to parse `instance` to `InstanceType` type.
-        New types can be registered using `DACEnv._get_instance.register`
+        New types can be registered using `DACEnv._to_instance.register`
 
         Example:
 
-        @DACEnv._get_instance.register
+        @DACEnv._to_instance.register
         def _(self, instance: float):
-            return self._get_instance(int(instance))
+            return self._to_instance(int(instance))
         """
         if instance is None:
             return next(self.generator_iterator)
         else:
             raise NotImplementedError
 
-    @_get_instance.register
+    @_to_instance.register
     def _(self, instance: int):
         return self.generator_iterator[instance]
 
