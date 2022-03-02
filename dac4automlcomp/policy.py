@@ -45,10 +45,23 @@ class DACPolicy(ABC):
         pass
 
     @abstractmethod
+    def seed(self, seed):
+        """Sets random state of the policy.
+        Subclasses should implement this method if their policy is stochastic
+        """
+        pass
+
+    @abstractmethod
     def save(self, f):
         pass
 
     @classmethod
     @abstractmethod
     def load(cls, f):
+        pass
+
+
+class DeterministicPolicy:
+    """Base class to indicate a policy is deterministic."""
+    def seed(self, seed):
         pass
