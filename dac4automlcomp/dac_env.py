@@ -49,7 +49,7 @@ class DACEnv(gym.Env, EzPickle, Generic[InstanceType]):
         raise NotImplementedError
 
     @abstractmethod
-    def reset(self, instance: Union[int, InstanceType] = None):
+    def reset(self, instance: Union[int, InstanceType]):
         """Start execution of the target algorithm on given problem instance.
 
         The default implementation of gym's reset cycles through a (possibly infinite) ordered sample of instances
