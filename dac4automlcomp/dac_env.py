@@ -83,21 +83,13 @@ class DACEnv(gym.Env, EzPickle, Generic[InstanceType]):
             return self._to_instance(int(instance))
         """
         if instance is None:
-            return next(self.generator_iterator)
+            return next(self._generator_iterator)
         else:
             raise NotImplementedError
 
     @_to_instance.register
     def _(self, instance: int):
-        return self.generator_iterator[instance]
-
-    @property
-    def generator_iterator(self):
-        """`Iterator` of `self._generator`.
-        Can be used to access any instance of the generator by indexing.
-        If it is used with `next` it will change the next instance the environment
-        is going to use when the `reset` is called without an instance argument."""
-        return self._generator_iterator
+        return self._generator_iterator[instance]
 
     def seed(self, seed=None):
         """Initializes random state of internal problem instance generator."""
