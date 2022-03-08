@@ -1,15 +1,16 @@
 import os
+import time
 
 import gym
 import numpy as np
 
 
 def run_experiment(
-    dac_policy_obj,
-    max_steps=10_000,
-    eval_every=1000,
-    num_repetitions=5,
-    num_eval_episodes=5,
+        dac_policy_obj,
+        max_steps=10_000,
+        eval_every=1000,
+        num_repetitions=5,
+        num_eval_episodes=5,
 ):
     """
     This is the main experiment runner for the DAC4AutoML competition tracks.
@@ -94,6 +95,62 @@ def run_experiment(
         )
 
 
+def run_experiment_draft(
+        dac_policy_obj,
+        dac_env_obj,
+        gen_seed,
+        num_instances,
+        policy_seed,
+        time_limit_sec
+):
+    """
+    This is the main experiment runner for the DAC4AutoML competition tracks.
+    It takes an object of the DAC policy to be evaluated and tests the policy on
+    a set of num_instances target problem instances and returns the resulting performances as a Numpy array.
+
+    #TODO Improve docstrings
+    # defining train/test splits and the distribution for the contexts of the DACEnv.   
+
+    Parameters
+    ----------
+    dac_policy_obj: DACPolicy
+    dac_env_obj: DACEnv
+    gen_seed: int
+    num_instances: int
+    policy_seed: int
+    time_limit_sec: int
+
+    Returns
+    -------
+    A Numpy array of performances with shape (num_instances,)
+
+    """
+    # TODO: Exclude downloading the datasets in the evaluation time?
+    start_time = time.time()  # TODO: Replace with a superior way of timing?
+
+    total_rewards = np.zeros((num_instances,))
+    dac_env_obj.seed(gen_seed)
+    policy_seed_rng = np.random.RandomState(policy_seed)
+
+    for i in range(num_instances):
+        if time.time() - start_time < time_limit_sec:
+            # TODO: To avoid stateful policies, we should actually re-load the policy here!
+            # (and optionally pass a policy_loader and policy_loader_kwargs(?) as argument instead)
+            dac_policy_obj.seed(policy_seed_rng.randint(1, 4294967295, dtype=np.int64))
+            obs = dac_env_obj.reset()
+            dac_policy_obj.reset(dac_env_obj.current_instance)
+            done = False
+            while not done:
+                config = dac_policy_obj.act(obs)
+                obs, reward, done, info = dac_env_obj.step(config)
+                total_rewards[i] += reward
+        else:
+            # TODO: generate some warning that time budget has been exceeded
+            total_rewards[i] = -np.inf
+
+    return total_rewards
+
+
 if __name__ == "__main__":
     # parser = argparse.ArgumentParser(description="The experiment runner for the DAC4RL track.")
     # parser.add_argument(
@@ -107,4 +164,19 @@ if __name__ == "__main__":
     # )
 
     # args = parser.parse_args()
-    run_experiment(str("a"))
+    # TODO: Should be cmd arguments
+    args = {'env_name': "sgd-v0", 'gen_seed': 666, 'policy_seed': 42, 'num_instances': 1000, 'time_limit_sec': 86_400}
+
+    if args['env_name'] == "sgd-v0":
+        import sgd_env
+    else:  # "== 'rl-v0'"
+        import rl_env
+    env = gym.make(args['env_name'])
+
+    # TODO: Should instead call load_solution() defined in a submission's solution.py
+    from sgd_env.policy.schedulers import CosineAnnealingLRPolicy
+
+    policy = CosineAnnealingLRPolicy(0.01)
+
+    run_experiment_draft(policy, env, args['gen_seed'], args['policy_seed'], args['num_instances'],
+                         args['time_limit_sec'])
