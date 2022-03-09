@@ -3,7 +3,7 @@ import time
 
 import gym
 import numpy as np
-
+import warnings
 
 # Parts of the code inspired by the AutoML3 competition
 from sys import argv, path
@@ -143,6 +143,21 @@ def run_experiment_draft(
     # TODO: Exclude downloading the datasets in the evaluation time?
     start_time = time.time()  # TODO: Replace with a superior way of timing?
 
+    screen_output_width = os.get_terminal_size().columns
+    repeat_equal_sign = (screen_output_width - 24) // 2
+    set_ansi_escape = "\033[32;1m"
+    reset_ansi_escape = "\033[0m"
+    print(
+        set_ansi_escape
+        + "=" * repeat_equal_sign
+        + "Running DAC4RL experiment"
+        + "=" * repeat_equal_sign
+        + reset_ansi_escape
+    )
+    print("\n\nLoaded object of type:", type(dac_policy_obj), "\n\n")
+    print("Current working directory:", os.getcwd())
+
+
     total_rewards = np.zeros((num_instances,))
     dac_env_obj.seed(gen_seed)
     policy_seed_rng = np.random.RandomState(policy_seed)
@@ -151,8 +166,13 @@ def run_experiment_draft(
         if time.time() - start_time < time_limit_sec:
             # TODO: To avoid stateful policies, we should actually re-load the policy here!
             # (and optionally pass a policy_loader and policy_loader_kwargs(?) as argument instead)
-            dac_policy_obj.seed(policy_seed_rng.randint(1, 4294967295, dtype=np.int64))
+            dac_policy_obj.seed(policy_seed_rng.randint(1, np.iinfo(np.int64).max, dtype=np.int64))
             obs = dac_env_obj.reset()
+            print(set_ansi_escape
+                + "\nInstance set to: "
+                + dac_env_obj.current_instance.dataset
+                + reset_ansi_escape
+            )
             dac_policy_obj.reset(dac_env_obj.current_instance)
             done = False
             while not done:
@@ -161,6 +181,7 @@ def run_experiment_draft(
                 total_rewards[i] += reward
         else:
             # TODO: generate some warning that time budget has been exceeded
+            warnings.warn("TIME LIMIT EXCEEDED. Setting total reward for instance " + str(i) + " to 0.")
             total_rewards[i] = -np.inf
 
     return total_rewards

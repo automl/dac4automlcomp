@@ -3,5 +3,5 @@ build
 __pycache__
 *.egg-info
 
-DAC4AutoML_*
+#DAC4AutoML_*
 data
