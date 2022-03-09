@@ -5,6 +5,20 @@ import gym
 import numpy as np
 
 
+# Parts of the code inspired by the AutoML3 competition
+from sys import argv, path
+from os import getcwd
+from os.path import join
+verbose = True
+root_dir = getcwd()     # e.g. '../' or pwd()
+default_ingestion_dir = join(root_dir, "DAC4AutoML_ingestion_program")
+default_input_dir = join(root_dir, "DAC4AutoML_sample_data")
+default_output_dir = join(root_dir, "DAC4AutoML_sample_predictions")
+default_hidden_dir = join(root_dir, "DAC4AutoML_sample_ref")
+default_shared_dir = join(root_dir, "DAC4AutoML_shared")
+default_submission_dir = join(root_dir, "DAC4AutoML_sample_code_submission")
+
+
 def run_experiment(
         dac_policy_obj,
         max_steps=10_000,
@@ -101,7 +115,8 @@ def run_experiment_draft(
         gen_seed,
         num_instances,
         policy_seed,
-        time_limit_sec
+        time_limit_sec,
+        **kwargs
 ):
     """
     This is the main experiment runner for the DAC4AutoML competition tracks.
@@ -165,18 +180,44 @@ if __name__ == "__main__":
 
     # args = parser.parse_args()
     # TODO: Should be cmd arguments
-    args = {'env_name': "sgd-v0", 'gen_seed': 666, 'policy_seed': 42, 'num_instances': 1000, 'time_limit_sec': 86_400}
+
+    if len(argv)==1: # Use the default input and output directories if no arguments are provided
+        ingestion_dir = default_ingestion_dir
+        input_dir = default_input_dir
+        output_dir = default_output_dir
+        hidden_dir = default_hidden_dir
+        shared_dir = default_shared_dir
+        submission_dir = default_submission_dir
+    else:
+        ingestion_dir = os.path.abspath(argv[1])
+        input_dir = os.path.abspath(argv[2])
+        output_dir = os.path.abspath(argv[3])
+        hidden_dir = os.path.abspath(argv[4])
+        shared_dir = os.path.abspath(argv[5])
+        submission_dir = os.path.abspath(argv[6])
+    if verbose:
+        print("Using ingestion_dir: " + ingestion_dir)
+        print("Using input_dir: " + input_dir)
+        print("Using output_dir: " + output_dir)
+        print("Using hidden_dir: " + hidden_dir)
+        print("Using shared_dir: " + shared_dir)
+        print("Using submission_dir: " + submission_dir)
+
+    path.append(submission_dir)
+
+    from solution import load_solution
+
+    args = {'env_name': "sgd-v0", 'gen_seed': 666, 'policy_seed': 42, 'num_instances': 3, 'time_limit_sec': 10}
+
+    # args = {'env_name': "dac4carl-v0", 'gen_seed': 666, 'policy_seed': 42, 'num_instances': 3, 'time_limit_sec': 86_400}
+
+    policy = load_solution() #TODO assert it's a DACPolicy
 
     if args['env_name'] == "sgd-v0":
         import sgd_env
-    else:  # "== 'rl-v0'"
-        import rl_env
+    else:  # "== 'dac4carl-v0'"
+        import rlenv
+
     env = gym.make(args['env_name'])
 
-    # TODO: Should instead call load_solution() defined in a submission's solution.py
-    from sgd_env.policy.schedulers import CosineAnnealingLRPolicy
-
-    policy = CosineAnnealingLRPolicy(0.01)
-
-    run_experiment_draft(policy, env, args['gen_seed'], args['policy_seed'], args['num_instances'],
-                         args['time_limit_sec'])
+    run_experiment_draft(policy, env, **args)
