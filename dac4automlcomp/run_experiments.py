@@ -4,6 +4,7 @@ import time
 import gym
 import numpy as np
 import warnings
+import argparse
 
 # Parts of the code inspired by the AutoML3 competition
 from sys import argv, path
@@ -11,12 +12,12 @@ from os import getcwd
 from os.path import join
 verbose = True
 root_dir = getcwd()     # e.g. '../' or pwd()
-default_ingestion_dir = join(root_dir, "DAC4AutoML_ingestion_program")
-default_input_dir = join(root_dir, "DAC4AutoML_sample_data")
-default_output_dir = join(root_dir, "DAC4AutoML_sample_predictions")
-default_hidden_dir = join(root_dir, "DAC4AutoML_sample_ref")
-default_shared_dir = join(root_dir, "DAC4AutoML_shared")
-default_submission_dir = join(root_dir, "DAC4AutoML_sample_code_submission")
+# default_ingestion_dir = join(root_dir, "DAC4AutoML_ingestion_program")
+# default_input_dir = join(root_dir, "DAC4AutoML_sample_data")
+# default_output_dir = join(root_dir, "DAC4AutoML_sample_predictions")
+# default_hidden_dir = join(root_dir, "DAC4AutoML_sample_ref")
+# default_shared_dir = join(root_dir, "DAC4AutoML_shared")
+# default_submission_dir = join(root_dir, "DAC4AutoML_sample_code_submission")
 
 
 def run_experiment(
@@ -170,7 +171,7 @@ def run_experiment_draft(
             obs = dac_env_obj.reset()
             print(set_ansi_escape
                 + "\nInstance set to: "
-                + dac_env_obj.current_instance.dataset
+                # + dac_env_obj.current_instance.dataset
                 + reset_ansi_escape
             )
             dac_policy_obj.reset(dac_env_obj.current_instance)
@@ -188,49 +189,52 @@ def run_experiment_draft(
 
 
 if __name__ == "__main__":
-    # parser = argparse.ArgumentParser(description="The experiment runner for the DAC4RL track.")
-    # parser.add_argument(
-    #     "--ray-dir", type=str, help="Location of ray_results/<expt> dir"
-    # )
-    # parser.add_argument(
-    #     "--convert-dir",
-    #     type=str,
-    #     default="/tmp/ray_hpbandster/",
-    #     help="Location to store converted Ray files in HpBandster format",
-    # )
+    parser = argparse.ArgumentParser(description="The experiment runner for the DAC4RL track.")
+    parser.add_argument(
+        "-s",
+        "--submission-dir", 
+        type=str, 
+        help="Location of program submission", 
+        default="DAC4AutoML_sample_code_submission",
+    )
+    parser.add_argument(
+        "--ingestion-dir",
+        type=str,
+        default="DAC4AutoML_ingestion_program",
+        help="Location of ingestion program",
+    )
+    parser.add_argument(
+        "--input-dir",
+        type=str,
+        default="",
+        help="",
+    )
 
-    # args = parser.parse_args()
+    print("Working directory:", root_dir)
+    args, unknown = parser.parse_known_args()
     # TODO: Should be cmd arguments
 
-    if len(argv)==1: # Use the default input and output directories if no arguments are provided
-        ingestion_dir = default_ingestion_dir
-        input_dir = default_input_dir
-        output_dir = default_output_dir
-        hidden_dir = default_hidden_dir
-        shared_dir = default_shared_dir
-        submission_dir = default_submission_dir
-    else:
-        ingestion_dir = os.path.abspath(argv[1])
-        input_dir = os.path.abspath(argv[2])
-        output_dir = os.path.abspath(argv[3])
-        hidden_dir = os.path.abspath(argv[4])
-        shared_dir = os.path.abspath(argv[5])
-        submission_dir = os.path.abspath(argv[6])
+    # ingestion_dir = os.path.abspath(args.ingestion_dir)
+    # input_dir = os.path.abspath(args.input_dir)
+    # output_dir = os.path.abspath(args.output_dir)
+    # hidden_dir = os.path.abspath(args.hidden_dir)
+    # shared_dir = os.path.abspath(args.shared_dir)
+    submission_dir = os.path.abspath(args.submission_dir)
     if verbose:
-        print("Using ingestion_dir: " + ingestion_dir)
-        print("Using input_dir: " + input_dir)
-        print("Using output_dir: " + output_dir)
-        print("Using hidden_dir: " + hidden_dir)
-        print("Using shared_dir: " + shared_dir)
+        # print("Using ingestion_dir: " + ingestion_dir)
+        # print("Using input_dir: " + input_dir)
+        # print("Using output_dir: " + output_dir)
+        # print("Using hidden_dir: " + hidden_dir)
+        # print("Using shared_dir: " + shared_dir)
         print("Using submission_dir: " + submission_dir)
 
-    path.append(submission_dir)
+    path.append(args.submission_dir)
 
     from solution import load_solution
 
     args = {'env_name': "sgd-v0", 'gen_seed': 666, 'policy_seed': 42, 'num_instances': 3, 'time_limit_sec': 10}
 
-    # args = {'env_name': "dac4carl-v0", 'gen_seed': 666, 'policy_seed': 42, 'num_instances': 3, 'time_limit_sec': 86_400}
+    args = {'env_name': "dac4carl-v0", 'gen_seed': 666, 'policy_seed': 42, 'num_instances': 3, 'time_limit_sec': 86_400}
 
     policy = load_solution() #TODO assert it's a DACPolicy
 
@@ -241,4 +245,6 @@ if __name__ == "__main__":
 
     env = gym.make(args['env_name'])
 
-    run_experiment_draft(policy, env, **args)
+    total_rewards = run_experiment_draft(policy, env, **args)
+
+    np.savetxt("scores.txt", total_rewards, delimiter=",")
