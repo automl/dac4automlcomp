@@ -11,17 +11,30 @@ end_date: 2022-06-18
 # You can specify admins here, use their codalab username (CaSe sensitive!) they will automatically be added as participants
 admin_names: TheEimer
 # Each competition has a set of html pages for potential participants to read and review and for participants to use to interact with the competition. These are the specifications for those pages.
-html:
-    # Basic overview (first impression) of the challenge
-    overview: overview.html
-    # What are the metrics being used for this challenge, how is it being scored.
-    evaluation: evaluation.html
-    # Terms of participation, including data licensing, results submission, et al
-    terms: terms_and_conditions.html
-    # Where to find the data, how to download it.
-    data: data.html
-    # An extra page
-    #page_name: extra.html
+#html:
+#    # Basic overview (first impression) of the challenge
+#    overview: overview.html
+#    # What are the metrics being used for this challenge, how is it being scored.
+#    evaluation: evaluation.html
+#    # Terms of participation, including data licensing, results submission, et al
+#    terms: terms_and_conditions.html
+#    # Where to find the data, how to download it.
+#    data: data.html
+#    # An extra page
+#    #page_name: extra.html
+terms: pages/terms.md
+pages:
+  - title: Overview
+    file: pages/overview.md
+  - title: Submission & Evaluation
+    file: pages/submission.md
+  - title: Timeline
+    file: pages/timeline.md
+  - title: Organizers
+    file: pages/organizers.md
+  - title: Contact
+    file: pages/contact.md
+
 # Competitions are broken up into phases. Every competition has at least one phase, some have multiple phases.
 phases:
     # Phase 1
