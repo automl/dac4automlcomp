@@ -19,3 +19,5 @@ The final ranking of the participants will be decided by their average rank on e
 Our metric for deciding the rank on a given instance is the mean performance across seeds.
 While the competition is running, the performance ranks for the leaderboard will be measured on a validation set.
 For the final ranks of the participants, we will use an unseen test set.
+
+TODO Reproducibility bonus?
