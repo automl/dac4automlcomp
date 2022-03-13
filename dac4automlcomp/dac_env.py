@@ -1,6 +1,6 @@
 from abc import abstractmethod
 from functools import singledispatchmethod
-from typing import Union, Generic
+from typing import Generic, Union
 
 import gym
 import numpy as np
@@ -24,9 +24,9 @@ class DACEnv(gym.Env, EzPickle, Generic[InstanceType]):
     """
 
     def __init__(
-            self,
-            generator: Generator[InstanceType],
-            n_instances: Union[int, float] = np.inf,
+        self,
+        generator: Generator[InstanceType],
+        n_instances: Union[int, float] = np.inf,
     ):
         """
 

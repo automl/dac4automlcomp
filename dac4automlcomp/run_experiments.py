@@ -1,17 +1,18 @@
+import argparse
 import os
 import time
-
-import gym
-import numpy as np
 import warnings
-import argparse
+from os import getcwd
+from os.path import join
 
 # Parts of the code inspired by the AutoML3 competition
 from sys import argv, path
-from os import getcwd
-from os.path import join
+
+import gym
+import numpy as np
+
 verbose = True
-root_dir = getcwd()     # e.g. '../' or pwd()
+root_dir = getcwd()  # e.g. '../' or pwd()
 # default_ingestion_dir = join(root_dir, "DAC4AutoML_ingestion_program")
 # default_input_dir = join(root_dir, "DAC4AutoML_sample_data")
 # default_output_dir = join(root_dir, "DAC4AutoML_sample_predictions")
@@ -21,11 +22,11 @@ root_dir = getcwd()     # e.g. '../' or pwd()
 
 
 def run_experiment(
-        dac_policy_obj,
-        max_steps=10_000,
-        eval_every=1000,
-        num_repetitions=5,
-        num_eval_episodes=5,
+    dac_policy_obj,
+    max_steps=10_000,
+    eval_every=1000,
+    num_repetitions=5,
+    num_eval_episodes=5,
 ):
     """
     This is the main experiment runner for the DAC4AutoML competition tracks.
@@ -37,22 +38,19 @@ def run_experiment(
     #TODO Improve docstrings
     # defining train/test splits and the distribution for the contexts of the DACEnv.
 
-    Parameters
-    ----------
-    dac_policy_obj : DACPolicy
+    Args:
+        dac_policy_obj (DACPolicy):
 
-    max_steps : int
+        max_steps (int):
 
-    eval_every : int
-        Evaluate every eval_every steps to be able to calculate the AUC of performance
+        eval_every (int): Evaluate every eval_every steps to be able to calculate the AUC of performance
 
-    num_repetitions : int
+        num_repetitions (int):
 
-    num_eval_episodes : int
+        num_eval_episodes (int):
 
-    Returns
-    ----------
-    A Numpy array of performances
+    Returns:
+        A Numpy array of performances # TODO: This function returns nothing?
 
     """
 
@@ -111,13 +109,13 @@ def run_experiment(
 
 
 def run_experiment_draft(
-        dac_policy_obj,
-        dac_env_obj,
-        gen_seed,
-        num_instances,
-        policy_seed,
-        time_limit_sec,
-        **kwargs
+    dac_policy_obj,
+    dac_env_obj,
+    gen_seed,
+    num_instances,
+    policy_seed,
+    time_limit_sec,
+    **kwargs,
 ):
     """
     This is the main experiment runner for the DAC4AutoML competition tracks.
@@ -125,20 +123,18 @@ def run_experiment_draft(
     a set of num_instances target problem instances and returns the resulting performances as a Numpy array.
 
     #TODO Improve docstrings
-    # defining train/test splits and the distribution for the contexts of the DACEnv.   
+    # defining train/test splits and the distribution for the contexts of the DACEnv.
 
-    Parameters
-    ----------
-    dac_policy_obj: DACPolicy
-    dac_env_obj: DACEnv
-    gen_seed: int
-    num_instances: int
-    policy_seed: int
-    time_limit_sec: int
+    Args:
+        dac_policy_obj (DACPolicy):
+        dac_env_obj (DACEnv):
+        gen_seed (int):
+        num_instances (int):
+        policy_seed (int):
+        time_limit_sec (int):
 
-    Returns
-    -------
-    A Numpy array of performances with shape (num_instances,)
+    Returns:
+        total_rewards: A Numpy array of performances with shape (num_instances,)
 
     """
     # TODO: Exclude downloading the datasets in the evaluation time?
@@ -158,7 +154,6 @@ def run_experiment_draft(
     print("\n\nLoaded object of type:", type(dac_policy_obj), "\n\n")
     print("Current working directory:", os.getcwd())
 
-
     total_rewards = np.zeros((num_instances,))
     dac_env_obj.seed(gen_seed)
     policy_seed_rng = np.random.RandomState(policy_seed)
@@ -167,9 +162,12 @@ def run_experiment_draft(
         if time.time() - start_time < time_limit_sec:
             # TODO: To avoid stateful policies, we should actually re-load the policy here!
             # (and optionally pass a policy_loader and policy_loader_kwargs(?) as argument instead)
-            dac_policy_obj.seed(policy_seed_rng.randint(1, np.iinfo(np.int64).max, dtype=np.int64))
+            dac_policy_obj.seed(
+                policy_seed_rng.randint(1, np.iinfo(np.int64).max, dtype=np.int64)
+            )
             obs = dac_env_obj.reset()
-            print(set_ansi_escape
+            print(
+                set_ansi_escape
                 + "\nInstance set to: "
                 # + dac_env_obj.current_instance.dataset
                 + reset_ansi_escape
@@ -182,19 +180,25 @@ def run_experiment_draft(
                 total_rewards[i] += reward
         else:
             # TODO: generate some warning that time budget has been exceeded
-            warnings.warn("TIME LIMIT EXCEEDED. Setting total reward for instance " + str(i) + " to 0.")
+            warnings.warn(
+                "TIME LIMIT EXCEEDED. Setting total reward for instance "
+                + str(i)
+                + " to 0."
+            )
             total_rewards[i] = -np.inf
 
     return total_rewards
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="The experiment runner for the DAC4RL track.")
+    parser = argparse.ArgumentParser(
+        description="The experiment runner for the DAC4RL track."
+    )
     parser.add_argument(
         "-s",
-        "--submission-dir", 
-        type=str, 
-        help="Location of program submission", 
+        "--submission-dir",
+        type=str,
+        help="Location of program submission",
         default="DAC4AutoML_sample_code_submission",
     )
     parser.add_argument(
@@ -232,18 +236,30 @@ if __name__ == "__main__":
 
     from solution import load_solution
 
-    args = {'env_name': "sgd-v0", 'gen_seed': 666, 'policy_seed': 42, 'num_instances': 3, 'time_limit_sec': 10}
+    args = {
+        "env_name": "sgd-v0",
+        "gen_seed": 666,
+        "policy_seed": 42,
+        "num_instances": 3,
+        "time_limit_sec": 10,
+    }
 
-    args = {'env_name': "dac4carl-v0", 'gen_seed': 666, 'policy_seed': 42, 'num_instances': 3, 'time_limit_sec': 86_400}
+    args = {
+        "env_name": "dac4carl-v0",
+        "gen_seed": 666,
+        "policy_seed": 42,
+        "num_instances": 3,
+        "time_limit_sec": 86_400,
+    }
 
-    policy = load_solution() #TODO assert it's a DACPolicy
+    policy = load_solution()  # TODO assert it's a DACPolicy
 
-    if args['env_name'] == "sgd-v0":
+    if args["env_name"] == "sgd-v0":
         import sgd_env
     else:  # "== 'dac4carl-v0'"
         import rlenv
 
-    env = gym.make(args['env_name'])
+    env = gym.make(args["env_name"])
 
     total_rewards = run_experiment_draft(policy, env, **args)
 

@@ -9,10 +9,9 @@ def load_solution() -> DACPolicy:
 
     Place your code loading your policy here.
 
-    Returns
-    -------
-    DACPolicy
+    Returns:
+        DACPolicy
     """
     from sgd_env.policy.schedulers import CosineAnnealingLRPolicy
-    
+
     return CosineAnnealingLRPolicy(0.01)

@@ -4,13 +4,13 @@ from typing import Generic, List, TypeVar, Union
 
 import numpy as np
 
-
 InstanceType = TypeVar("InstanceType")
 
 
 class Generator(Generic[InstanceType], ABC):
     """Instance generator modeling a target problem distribution for DAC as a (possibly infinite) sequence of instances
     that are distributed accordingly"""
+
     def __init__(self):
         self.seed(None)
 
@@ -39,8 +39,11 @@ class Generator(Generic[InstanceType], ABC):
 
 class GeneratorIterator(Generic[InstanceType]):
     """Generator iterator to cycle through the first n_instances generated instances by generator."""
+
     def __init__(
-        self, generator: Generator[InstanceType], n_instances: Union[int, float] = np.inf
+        self,
+        generator: Generator[InstanceType],
+        n_instances: Union[int, float] = np.inf,
     ):
         self.generator = generator
         self.n_instances = n_instances

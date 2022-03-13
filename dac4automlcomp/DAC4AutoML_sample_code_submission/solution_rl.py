@@ -9,9 +9,8 @@ def load_solution() -> DACPolicy:
 
     Place your code loading your policy here.
 
-    Returns
-    -------
-    DACPolicy
+    Returns:
+        DACPolicy
     """
 
     ppo_action = {
@@ -23,5 +22,5 @@ def load_solution() -> DACPolicy:
         "ent_coef": 0.01,
         "clip_range": 0.2,
     }
-    
+
     return lambda x: ppo_action

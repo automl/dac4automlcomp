@@ -1,5 +1,5 @@
-from pathlib import Path
 from abc import ABC, abstractmethod
+from pathlib import Path
 
 
 class DACPolicy(ABC):
@@ -31,7 +31,7 @@ class DACPolicy(ABC):
 
     @abstractmethod
     def reset(self, instance):
-        """ Reset a policy's internal state.
+        """Reset a policy's internal state.
 
         The reset method is there to support 'stateful' policies (e.g., LSTM),
         i.e., whose actions are a function not only of the current
@@ -57,7 +57,6 @@ class DACPolicy(ABC):
         """Saves the policy to given folder path."""
         pass
 
-
     @classmethod
     @abstractmethod
     def load(cls, path: Path):
@@ -67,5 +66,6 @@ class DACPolicy(ABC):
 
 class DeterministicPolicy:
     """Base class to indicate a policy is deterministic."""
+
     def seed(self, seed):
         pass
