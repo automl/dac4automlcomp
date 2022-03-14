@@ -41,7 +41,7 @@ class DACEnv(gym.Env, EzPickle, Generic[InstanceType]):
 
     def __init_subclass__(cls, instance_type: InstanceType):
         """Automatically register instance_type to `_to_instance` method in subclasses."""
-        cls._to_instance.register(instance_type, lambda x: x)
+        cls._to_instance.register(instance_type, lambda _, x: x)
 
     @abstractmethod
     def step(self, action):
