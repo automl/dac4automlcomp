@@ -1,15 +1,14 @@
 import argparse
 import os
 import time
+import gym
+import numpy as np
 import warnings
-from os import getcwd
-from os.path import join
 
 # Parts of the code inspired by the AutoML3 competition
 from sys import argv, path
-
-import gym
-import numpy as np
+from os import getcwd
+from os.path import join
 
 verbose = True
 root_dir = getcwd()  # e.g. '../' or pwd()
@@ -195,6 +194,13 @@ if __name__ == "__main__":
         description="The experiment runner for the DAC4RL track."
     )
     parser.add_argument(
+        "-t",
+        "--competition-track", 
+        choices=['dac4sgd', 'dac4rl'], 
+        help="DAC4SGD or DAC4RL", 
+        default="dac4rl",
+    )
+    parser.add_argument(
         "-s",
         "--submission-dir",
         type=str,
@@ -233,10 +239,11 @@ if __name__ == "__main__":
         print("Using submission_dir: " + submission_dir)
 
     path.append(args.submission_dir)
+    # print("path:", path)
 
     from solution import load_solution
 
-    args = {
+    args_ml = {
         "env_name": "sgd-v0",
         "gen_seed": 666,
         "policy_seed": 42,
@@ -244,7 +251,7 @@ if __name__ == "__main__":
         "time_limit_sec": 10,
     }
 
-    args = {
+    args_rl = {
         "env_name": "dac4carl-v0",
         "gen_seed": 666,
         "policy_seed": 42,
@@ -252,9 +259,14 @@ if __name__ == "__main__":
         "time_limit_sec": 86_400,
     }
 
-    policy = load_solution()  # TODO assert it's a DACPolicy
+    if args.competition_track == "dac4sgd":
+        args = args_ml
+    elif args.competition_track == "dac4rl":
+        args = args_rl
 
-    if args["env_name"] == "sgd-v0":
+    policy = load_solution() #TODO assert it's a DACPolicy
+
+    if args['env_name'] == "sgd-v0":
         import sgd_env
     else:  # "== 'dac4carl-v0'"
         import rlenv
@@ -263,4 +275,5 @@ if __name__ == "__main__":
 
     total_rewards = run_experiment_draft(policy, env, **args)
 
+    print("total_rewards:", total_rewards)
     np.savetxt("scores.txt", total_rewards, delimiter=",")
