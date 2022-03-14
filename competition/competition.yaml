@@ -14,6 +14,7 @@ admin_names: TheEimer
 html:
   Overview: pages/overview.html
   Submission & Evaluation: pages/submission.html
+  Getting Started: pages/getting_started.html
   Timeline: pages/timeline.html
   Organizers: pages/organizers.html
   Contact: pages/contact.html
