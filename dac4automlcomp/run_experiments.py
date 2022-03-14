@@ -1,15 +1,14 @@
 import argparse
 import os
 import time
+import gym
+import numpy as np
 import warnings
-from os import getcwd
-from os.path import join
 
 # Parts of the code inspired by the AutoML3 competition
 from sys import argv, path
-
-import gym
-import numpy as np
+from os import getcwd
+from os.path import join
 
 verbose = True
 root_dir = getcwd()  # e.g. '../' or pwd()
