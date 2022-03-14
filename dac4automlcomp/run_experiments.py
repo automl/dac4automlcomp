@@ -239,8 +239,7 @@ if __name__ == "__main__":
         print("Using submission_dir: " + submission_dir)
 
     path.append(args.submission_dir)
-    path.insert(0, args.submission_dir)
-    print("path:", path)
+    # print("path:", path)
 
     from solution import load_solution
 
@@ -261,9 +260,9 @@ if __name__ == "__main__":
     }
 
     if args.competition_track == "dac4sgd":
-        args = {'env_name': "sgd-v0", 'gen_seed': 666, 'policy_seed': 42, 'num_instances': 3, 'time_limit_sec': 10}
+        args = args_ml
     elif args.competition_track == "dac4rl":
-        args = {'env_name': "dac4carl-v0", 'gen_seed': 666, 'policy_seed': 42, 'num_instances': 3, 'time_limit_sec': 86_400}
+        args = args_rl
 
     policy = load_solution() #TODO assert it's a DACPolicy
 
