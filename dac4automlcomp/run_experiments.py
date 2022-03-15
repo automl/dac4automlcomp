@@ -177,6 +177,7 @@ def run_experiment_draft(
                 config = dac_policy_obj.act(obs)
                 obs, reward, done, info = dac_env_obj.step(config)
                 total_rewards[i] += reward
+                #TODO Make it AUC for RL track
         else:
             # TODO: generate some warning that time budget has been exceeded
             warnings.warn(
@@ -214,7 +215,8 @@ if __name__ == "__main__":
         help="Location of ingestion program",
     )
     parser.add_argument(
-        "--input-dir",
+        "-o",
+        "--output-dir",
         type=str,
         default="",
         help="",
@@ -226,14 +228,14 @@ if __name__ == "__main__":
 
     # ingestion_dir = os.path.abspath(args.ingestion_dir)
     # input_dir = os.path.abspath(args.input_dir)
-    # output_dir = os.path.abspath(args.output_dir)
+    output_dir = os.path.abspath(args.output_dir)
     # hidden_dir = os.path.abspath(args.hidden_dir)
     # shared_dir = os.path.abspath(args.shared_dir)
     submission_dir = os.path.abspath(args.submission_dir)
     if verbose:
         # print("Using ingestion_dir: " + ingestion_dir)
         # print("Using input_dir: " + input_dir)
-        # print("Using output_dir: " + output_dir)
+        print("Using output_dir: " + output_dir)
         # print("Using hidden_dir: " + hidden_dir)
         # print("Using shared_dir: " + shared_dir)
         print("Using submission_dir: " + submission_dir)
@@ -276,4 +278,11 @@ if __name__ == "__main__":
     total_rewards = run_experiment_draft(policy, env, **args)
 
     print("total_rewards:", total_rewards)
-    np.savetxt("scores.txt", total_rewards, delimiter=",")
+    np.savetxt("scores_np.txt", total_rewards, delimiter=",")
+
+    # Write scores.txt
+    fout = open('scores.txt', 'a')
+    # for rew in total_rewards:
+    fout.write("DLSCORES: " + str(np.mean(total_rewards)) + ' ')
+    fout.write("RLSCORES: " + str(np.mean(total_rewards)) + ' ')
+    fout.close()
