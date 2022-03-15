@@ -1,9 +1,18 @@
 import argparse
 import os
+# os.environ['OPENBLAS_NUM_THREADS'] = '1'
+print("os.environ:", os.environ)
+import resource
+print("resource.RLIMIT_NPROC,CPU:", resource.RLIMIT_NPROC, resource.RLIMIT_CPU)
+
+# resource.setrlimit(resource.RLIMIT_CPU, (limits["time"], limits["time"]))
+# resource.setrlimit(resource.RLIMIT_NPROC, (1000, 1000))
+# print("resource.RLIMIT_NPROC,CPU:", resource.RLIMIT_NPROC, resource.RLIMIT_CPU)
 import time
 import gym
 import numpy as np
 import warnings
+
 
 # Parts of the code inspired by the AutoML3 competition
 from sys import argv, path
@@ -139,7 +148,7 @@ def run_experiment_draft(
     # TODO: Exclude downloading the datasets in the evaluation time?
     start_time = time.time()  # TODO: Replace with a superior way of timing?
 
-    screen_output_width = os.get_terminal_size().columns
+    screen_output_width = 80 # os.get_terminal_size().columns
     repeat_equal_sign = (screen_output_width - 24) // 2
     set_ansi_escape = "\033[32;1m"
     reset_ansi_escape = "\033[0m"
@@ -262,27 +271,28 @@ if __name__ == "__main__":
     }
 
     if args.competition_track == "dac4sgd":
-        args = args_ml
+        env_args = args_ml
     elif args.competition_track == "dac4rl":
-        args = args_rl
+        env_args = args_rl
 
-    policy = load_solution() #TODO assert it's a DACPolicy
+    from pathlib import Path    
+    policy = load_solution(path=Path(args.submission_dir)) #TODO assert it's a DACPolicy
 
-    if args['env_name'] == "sgd-v0":
+    if env_args['env_name'] == "sgd-v0":
         import sgd_env
     else:  # "== 'dac4carl-v0'"
         import rlenv
 
-    env = gym.make(args["env_name"])
+    env = gym.make(env_args["env_name"])
 
-    total_rewards = run_experiment_draft(policy, env, **args)
+    total_rewards = run_experiment_draft(policy, env, **env_args)
 
     print("total_rewards:", total_rewards)
     np.savetxt("scores_np.txt", total_rewards, delimiter=",")
 
     # Write scores.txt
-    fout = open('scores.txt', 'a')
+    fout = open(args.output_dir + 'scores.txt', 'a')
     # for rew in total_rewards:
-    fout.write("DLSCORES: " + str(np.mean(total_rewards)) + ' ')
-    fout.write("RLSCORES: " + str(np.mean(total_rewards)) + ' ')
+    fout.write("DLSCORES: " + str(np.mean(total_rewards)) + '\n')
+    fout.write("RLSCORES: " + str(np.mean(total_rewards)) + '\n')
     fout.close()
