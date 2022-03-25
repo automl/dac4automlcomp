@@ -1,0 +1,684 @@
+# The title of the competition
+title: DAC4AutoML Competition
+# A description of the competition
+description: Dynamic Algorithm Configuration for Deep Learning and Reinforcement Learning
+# A logo/image for the competition
+# image: logo.jpg
+# Does this competition require participant approval by the organizer
+has_registration: True
+# When is this competition finished. It is valid to not include an end_date, which means the competition remains open perpetually.
+end_date: 2022-06-18
+# You can specify admins here, use their codalab username (CaSe sensitive!) they will automatically be added as participants
+admin_names: TheEimer
+# Each competition has a set of html pages for potential participants to read and review and for participants to use to interact with the competition. These are the specifications for those pages.
+html:
+  Overview: pages/overview.html
+  Submission & Evaluation: pages/submission.html
+  Rules: pages/rules.html
+  Getting Started: pages/getting_started.html
+  Timeline: pages/timeline.html
+  Organizers: pages/organizers.html
+  Contact: pages/contact.html
+#    # Basic overview (first impression) of the challenge
+#    overview: overview.html
+#    # What are the metrics being used for this challenge, how is it being scored.
+#    evaluation: evaluation.html
+#    # Terms of participation, including data licensing, results submission, et al
+#    terms: terms_and_conditions.html
+#    # Where to find the data, how to download it.
+#    data: data.html
+#    # An extra page
+#    #page_name: extra.html
+#terms: pages/terms.md
+#pages:
+#  - title: Overview
+#    file: pages/overview.md
+#  - title: Submission & Evaluation
+#    file: pages/submission.md
+#  - title: Timeline
+#    file: pages/timeline.md
+#  - title: Organizers
+#    file: pages/organizers.md
+#  - title: Contact
+#    file: pages/contact.md
+
+# Competitions are broken up into phases. Every competition has at least one phase, some have multiple phases.
+phases:
+    # Phase 1
+    1:
+        phasenumber: 1
+        # Phase name/label
+        label: "Competiton"
+        # When does this phase begin
+        start_date: 2022-03-15
+        # Maximum submissions this phase
+        max_submissions: 100
+        # Scoring program for this phase (the same as the previous phase)
+        scoring_program: program.zip
+        # The reference data for scoring, this could/should/would be different this phase
+        reference_data: reference.zip
+        # Data sets
+        #datasets:
+            # Dataset #1
+        #    1:
+                # Data set name
+        #        name: Challenge Data
+                # URL for the dataset
+        #        url: http://spreadsheets.google.com/pub?key=t9GL1nIZdtxszJbjKErN2Hg&output=xls
+                # Data set description
+        #        description: Example challenge data
+# Leaderboard / Scoreboard configuration
+leaderboard:
+  leaderboards:
+    Results: &RESULTS
+      label: RESULTS
+      rank: 1
+  columns:
+    cid_0:
+      leaderboard: *RESULTS
+      label: i0
+      numeric_format: 4
+      rank: 2
+      sort: asc
+    cid_1:
+      leaderboard: *RESULTS
+      label: i1
+      numeric_format: 4
+      rank: 3
+      sort: asc
+    cid_2:
+      leaderboard: *RESULTS
+      label: i2
+      numeric_format: 4
+      rank: 4
+      sort: asc
+    cid_3:
+      leaderboard: *RESULTS
+      label: i3
+      numeric_format: 4
+      rank: 5
+      sort: asc
+    cid_4:
+      leaderboard: *RESULTS
+      label: i4
+      numeric_format: 4
+      rank: 6
+      sort: asc
+    cid_5:
+      leaderboard: *RESULTS
+      label: i5
+      numeric_format: 4
+      rank: 7
+      sort: asc
+    cid_6:
+      leaderboard: *RESULTS
+      label: i6
+      numeric_format: 4
+      rank: 8
+      sort: asc
+    cid_7:
+      leaderboard: *RESULTS
+      label: i7
+      numeric_format: 4
+      rank: 9
+      sort: asc
+    cid_8:
+      leaderboard: *RESULTS
+      label: i8
+      numeric_format: 4
+      rank: 10
+      sort: asc
+    cid_9:
+      leaderboard: *RESULTS
+      label: i9
+      numeric_format: 4
+      rank: 11
+      sort: asc
+    cid_10:
+      leaderboard: *RESULTS
+      label: i10
+      numeric_format: 4
+      rank: 12
+      sort: asc
+    cid_11:
+      leaderboard: *RESULTS
+      label: i11
+      numeric_format: 4
+      rank: 13
+      sort: asc
+    cid_12:
+      leaderboard: *RESULTS
+      label: i12
+      numeric_format: 4
+      rank: 14
+      sort: asc
+    cid_13:
+      leaderboard: *RESULTS
+      label: i13
+      numeric_format: 4
+      rank: 15
+      sort: asc
+    cid_14:
+      leaderboard: *RESULTS
+      label: i14
+      numeric_format: 4
+      rank: 16
+      sort: asc
+    cid_15:
+      leaderboard: *RESULTS
+      label: i15
+      numeric_format: 4
+      rank: 17
+      sort: asc
+    cid_16:
+      leaderboard: *RESULTS
+      label: i16
+      numeric_format: 4
+      rank: 18
+      sort: asc
+    cid_17:
+      leaderboard: *RESULTS
+      label: i17
+      numeric_format: 4
+      rank: 19
+      sort: asc
+    cid_18:
+      leaderboard: *RESULTS
+      label: i18
+      numeric_format: 4
+      rank: 20
+      sort: asc
+    cid_19:
+      leaderboard: *RESULTS
+      label: i19
+      numeric_format: 4
+      rank: 21
+      sort: asc
+    cid_20:
+      leaderboard: *RESULTS
+      label: i20
+      numeric_format: 4
+      rank: 22
+      sort: asc
+    cid_21:
+      leaderboard: *RESULTS
+      label: i21
+      numeric_format: 4
+      rank: 23
+      sort: asc
+    cid_22:
+      leaderboard: *RESULTS
+      label: i22
+      numeric_format: 4
+      rank: 24
+      sort: asc
+    cid_23:
+      leaderboard: *RESULTS
+      label: i23
+      numeric_format: 4
+      rank: 25
+      sort: asc
+    cid_24:
+      leaderboard: *RESULTS
+      label: i24
+      numeric_format: 4
+      rank: 26
+      sort: asc
+    cid_25:
+      leaderboard: *RESULTS
+      label: i25
+      numeric_format: 4
+      rank: 27
+      sort: asc
+    cid_26:
+      leaderboard: *RESULTS
+      label: i26
+      numeric_format: 4
+      rank: 28
+      sort: asc
+    cid_27:
+      leaderboard: *RESULTS
+      label: i27
+      numeric_format: 4
+      rank: 29
+      sort: asc
+    cid_28:
+      leaderboard: *RESULTS
+      label: i28
+      numeric_format: 4
+      rank: 30
+      sort: asc
+    cid_29:
+      leaderboard: *RESULTS
+      label: i29
+      numeric_format: 4
+      rank: 31
+      sort: asc
+    cid_30:
+      leaderboard: *RESULTS
+      label: i30
+      numeric_format: 4
+      rank: 32
+      sort: asc
+    cid_31:
+      leaderboard: *RESULTS
+      label: i31
+      numeric_format: 4
+      rank: 33
+      sort: asc
+    cid_32:
+      leaderboard: *RESULTS
+      label: i32
+      numeric_format: 4
+      rank: 34
+      sort: asc
+    cid_33:
+      leaderboard: *RESULTS
+      label: i33
+      numeric_format: 4
+      rank: 35
+      sort: asc
+    cid_34:
+      leaderboard: *RESULTS
+      label: i34
+      numeric_format: 4
+      rank: 36
+      sort: asc
+    cid_35:
+      leaderboard: *RESULTS
+      label: i35
+      numeric_format: 4
+      rank: 37
+      sort: asc
+    cid_36:
+      leaderboard: *RESULTS
+      label: i36
+      numeric_format: 4
+      rank: 38
+      sort: asc
+    cid_37:
+      leaderboard: *RESULTS
+      label: i37
+      numeric_format: 4
+      rank: 39
+      sort: asc
+    cid_38:
+      leaderboard: *RESULTS
+      label: i38
+      numeric_format: 4
+      rank: 40
+      sort: asc
+    cid_39:
+      leaderboard: *RESULTS
+      label: i39
+      numeric_format: 4
+      rank: 41
+      sort: asc
+    cid_40:
+      leaderboard: *RESULTS
+      label: i40
+      numeric_format: 4
+      rank: 42
+      sort: asc
+    cid_41:
+      leaderboard: *RESULTS
+      label: i41
+      numeric_format: 4
+      rank: 43
+      sort: asc
+    cid_42:
+      leaderboard: *RESULTS
+      label: i42
+      numeric_format: 4
+      rank: 44
+      sort: asc
+    cid_43:
+      leaderboard: *RESULTS
+      label: i43
+      numeric_format: 4
+      rank: 45
+      sort: asc
+    cid_44:
+      leaderboard: *RESULTS
+      label: i44
+      numeric_format: 4
+      rank: 46
+      sort: asc
+    cid_45:
+      leaderboard: *RESULTS
+      label: i45
+      numeric_format: 4
+      rank: 47
+      sort: asc
+    cid_46:
+      leaderboard: *RESULTS
+      label: i46
+      numeric_format: 4
+      rank: 48
+      sort: asc
+    cid_47:
+      leaderboard: *RESULTS
+      label: i47
+      numeric_format: 4
+      rank: 49
+      sort: asc
+    cid_48:
+      leaderboard: *RESULTS
+      label: i48
+      numeric_format: 4
+      rank: 50
+      sort: asc
+    cid_49:
+      leaderboard: *RESULTS
+      label: i49
+      numeric_format: 4
+      rank: 51
+      sort: asc
+    cid_50:
+      leaderboard: *RESULTS
+      label: i50
+      numeric_format: 4
+      rank: 52
+      sort: asc
+    cid_51:
+      leaderboard: *RESULTS
+      label: i51
+      numeric_format: 4
+      rank: 53
+      sort: asc
+    cid_52:
+      leaderboard: *RESULTS
+      label: i52
+      numeric_format: 4
+      rank: 54
+      sort: asc
+    cid_53:
+      leaderboard: *RESULTS
+      label: i53
+      numeric_format: 4
+      rank: 55
+      sort: asc
+    cid_54:
+      leaderboard: *RESULTS
+      label: i54
+      numeric_format: 4
+      rank: 56
+      sort: asc
+    cid_55:
+      leaderboard: *RESULTS
+      label: i55
+      numeric_format: 4
+      rank: 57
+      sort: asc
+    cid_56:
+      leaderboard: *RESULTS
+      label: i56
+      numeric_format: 4
+      rank: 58
+      sort: asc
+    cid_57:
+      leaderboard: *RESULTS
+      label: i57
+      numeric_format: 4
+      rank: 59
+      sort: asc
+    cid_58:
+      leaderboard: *RESULTS
+      label: i58
+      numeric_format: 4
+      rank: 60
+      sort: asc
+    cid_59:
+      leaderboard: *RESULTS
+      label: i59
+      numeric_format: 4
+      rank: 61
+      sort: asc
+    cid_60:
+      leaderboard: *RESULTS
+      label: i60
+      numeric_format: 4
+      rank: 62
+      sort: asc
+    cid_61:
+      leaderboard: *RESULTS
+      label: i61
+      numeric_format: 4
+      rank: 63
+      sort: asc
+    cid_62:
+      leaderboard: *RESULTS
+      label: i62
+      numeric_format: 4
+      rank: 64
+      sort: asc
+    cid_63:
+      leaderboard: *RESULTS
+      label: i63
+      numeric_format: 4
+      rank: 65
+      sort: asc
+    cid_64:
+      leaderboard: *RESULTS
+      label: i64
+      numeric_format: 4
+      rank: 66
+      sort: asc
+    cid_65:
+      leaderboard: *RESULTS
+      label: i65
+      numeric_format: 4
+      rank: 67
+      sort: asc
+    cid_66:
+      leaderboard: *RESULTS
+      label: i66
+      numeric_format: 4
+      rank: 68
+      sort: asc
+    cid_67:
+      leaderboard: *RESULTS
+      label: i67
+      numeric_format: 4
+      rank: 69
+      sort: asc
+    cid_68:
+      leaderboard: *RESULTS
+      label: i68
+      numeric_format: 4
+      rank: 70
+      sort: asc
+    cid_69:
+      leaderboard: *RESULTS
+      label: i69
+      numeric_format: 4
+      rank: 71
+      sort: asc
+    cid_70:
+      leaderboard: *RESULTS
+      label: i70
+      numeric_format: 4
+      rank: 72
+      sort: asc
+    cid_71:
+      leaderboard: *RESULTS
+      label: i71
+      numeric_format: 4
+      rank: 73
+      sort: asc
+    cid_72:
+      leaderboard: *RESULTS
+      label: i72
+      numeric_format: 4
+      rank: 74
+      sort: asc
+    cid_73:
+      leaderboard: *RESULTS
+      label: i73
+      numeric_format: 4
+      rank: 75
+      sort: asc
+    cid_74:
+      leaderboard: *RESULTS
+      label: i74
+      numeric_format: 4
+      rank: 76
+      sort: asc
+    cid_75:
+      leaderboard: *RESULTS
+      label: i75
+      numeric_format: 4
+      rank: 77
+      sort: asc
+    cid_76:
+      leaderboard: *RESULTS
+      label: i76
+      numeric_format: 4
+      rank: 78
+      sort: asc
+    cid_77:
+      leaderboard: *RESULTS
+      label: i77
+      numeric_format: 4
+      rank: 79
+      sort: asc
+    cid_78:
+      leaderboard: *RESULTS
+      label: i78
+      numeric_format: 4
+      rank: 80
+      sort: asc
+    cid_79:
+      leaderboard: *RESULTS
+      label: i79
+      numeric_format: 4
+      rank: 81
+      sort: asc
+    cid_80:
+      leaderboard: *RESULTS
+      label: i80
+      numeric_format: 4
+      rank: 82
+      sort: asc
+    cid_81:
+      leaderboard: *RESULTS
+      label: i81
+      numeric_format: 4
+      rank: 83
+      sort: asc
+    cid_82:
+      leaderboard: *RESULTS
+      label: i82
+      numeric_format: 4
+      rank: 84
+      sort: asc
+    cid_83:
+      leaderboard: *RESULTS
+      label: i83
+      numeric_format: 4
+      rank: 85
+      sort: asc
+    cid_84:
+      leaderboard: *RESULTS
+      label: i84
+      numeric_format: 4
+      rank: 86
+      sort: asc
+    cid_85:
+      leaderboard: *RESULTS
+      label: i85
+      numeric_format: 4
+      rank: 87
+      sort: asc
+    cid_86:
+      leaderboard: *RESULTS
+      label: i86
+      numeric_format: 4
+      rank: 88
+      sort: asc
+    cid_87:
+      leaderboard: *RESULTS
+      label: i87
+      numeric_format: 4
+      rank: 89
+      sort: asc
+    cid_88:
+      leaderboard: *RESULTS
+      label: i88
+      numeric_format: 4
+      rank: 90
+      sort: asc
+    cid_89:
+      leaderboard: *RESULTS
+      label: i89
+      numeric_format: 4
+      rank: 91
+      sort: asc
+    cid_90:
+      leaderboard: *RESULTS
+      label: i90
+      numeric_format: 4
+      rank: 92
+      sort: asc
+    cid_91:
+      leaderboard: *RESULTS
+      label: i91
+      numeric_format: 4
+      rank: 93
+      sort: asc
+    cid_92:
+      leaderboard: *RESULTS
+      label: i92
+      numeric_format: 4
+      rank: 94
+      sort: asc
+    cid_93:
+      leaderboard: *RESULTS
+      label: i93
+      numeric_format: 4
+      rank: 95
+      sort: asc
+    cid_94:
+      leaderboard: *RESULTS
+      label: i94
+      numeric_format: 4
+      rank: 96
+      sort: asc
+    cid_95:
+      leaderboard: *RESULTS
+      label: i95
+      numeric_format: 4
+      rank: 97
+      sort: asc
+    cid_96:
+      leaderboard: *RESULTS
+      label: i96
+      numeric_format: 4
+      rank: 98
+      sort: asc
+    cid_97:
+      leaderboard: *RESULTS
+      label: i97
+      numeric_format: 4
+      rank: 99
+      sort: asc
+    cid_98:
+      leaderboard: *RESULTS
+      label: i98
+      numeric_format: 4
+      rank: 100
+      sort: asc
+    cid_99:
+      leaderboard: *RESULTS
+      label: i99
+      numeric_format: 4
+      rank: 101
+      sort: asc
+    ave_score:
+      leaderboard: *RESULTS
+      label: Average Score
+      numeric_format: 4
+      rank: 1
+      computed:
+        operation: Avg
+        fields: cid_0, cid_1, cid_2, cid_3, cid_4, cid_5, cid_6, cid_7, cid_8, cid_9, cid_10, cid_11, cid_12, cid_13, cid_14, cid_15, cid_16, cid_17, cid_18, cid_19, cid_20, cid_21, cid_22, cid_23, cid_24, cid_25, cid_26, cid_27, cid_28, cid_29, cid_30, cid_31, cid_32, cid_33, cid_34, cid_35, cid_36, cid_37, cid_38, cid_39, cid_40, cid_41, cid_42, cid_43, cid_44, cid_45, cid_46, cid_47, cid_48, cid_49, cid_50, cid_51, cid_52, cid_53, cid_54, cid_55, cid_56, cid_57, cid_58, cid_59, cid_60, cid_61, cid_62, cid_63, cid_64, cid_65, cid_66, cid_67, cid_68, cid_69, cid_70, cid_71, cid_72, cid_73, cid_74, cid_75, cid_76, cid_77, cid_78, cid_79, cid_80, cid_81, cid_82, cid_83, cid_84, cid_85, cid_86, cid_87, cid_88, cid_89, cid_90, cid_91, cid_92, cid_93, cid_94, cid_95, cid_96, cid_97, cid_98, cid_99
