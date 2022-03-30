@@ -15,6 +15,8 @@ You are given the opportunity to reconfigure the learning rate before every opti
   <dd>The dataset used for training (one of MNIST, CIFAR-10, Fashion-MNIST)</dd>
   <dt>model</dt>
   <dd>The neural network model that is being optimized. This can either be a small MLP or simple convnet, varying in number of layers, units/filters per layer, filter sizes, activations, and usage of batchnorm.</dd>
+  <dt>optimizer_params</dt>
+  <dd>The values for the other AdamW hyperparameters (e.g., weight decay).</dd>
   <dt>loss</dt>
   <dd>Loss criterion to be minimized. In the challenge, all instances use cross entropy loss. </dd>
   <dt>batch_size</dt>
