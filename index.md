@@ -21,7 +21,7 @@ While DAC has been applied to Computer Vision problems before (Daniel et al., 20
 - Goal: Dynamically adapt the learning rate of the SGD optimizer
 - Based on the extended version of the SGDBenchmark included in DACBench.
 - Provided baselines: Static learning rate, cosine annealing (Loshchilov and Hutter, 2017), reduce learning rate on pleateu (Pytorch; Paszke et al., 2019) and a basic RL agent.
-- CodaLab competition page: TODO
+- CodaLab competition page: TBA
 
 ### Challenge: DAC4RL
 
@@ -30,7 +30,7 @@ In Reinforcement Learning, dynamic configuration is common but does not currentl
 - Goal: Dynamically adapt the hyperparameter configuration of a stable_baselines3 agent
 - Based on 5 CARL environments
 - Provided baselines: Static configurations and learned configuration schedule found by state-of-the-art AutoRL tool PB2 (Parker-Holder et al., 2020)
-- CodaLab competition page: TODO
+- CodaLab competition page: TBA
 
 ### Awards
 
@@ -43,6 +43,20 @@ We will provide you with certificates of participation (physical as well as digi
 ### Organizers
 The DAC4AutoML competition is organized by the [AutoML Freiburg-Hannover group](automl.org).
 
+
+<table>
+  <tr>
+    <td><a href= "https://www.tnt.uni-hannover.de/staff/eimer/">Theresa Eimer </a> </td>
+     <td><a href= "https://www.tnt.uni-hannover.de/staff/eimer/">Raghu Rajan </a> </td>
+     <td><a href= "https://www.tnt.uni-hannover.de/staff/mohan/">Aditya Mohan </a> </td>
+  </tr>
+  <tr>
+    <td><img src="theresa.jpg" width="150" height="200"></td>
+    <td><img src="raghu.jpg" width="175" height="200"></td>
+    <td><img src="aditya.jpg" width="150" height="200"></td>
+  </tr>
+ </table>
+ 
 <figure class="image">
     <img src="theresa.jpg" width="150" height="200">
     <font size="2">
