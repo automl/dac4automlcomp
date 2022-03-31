@@ -65,7 +65,7 @@ The DAC4AutoML competition is organized by the [AutoML Freiburg-Hannover group](
     <td><img src="steven.jpg" width="150" height="200"></td>
   </tr>
   <tr>
-    <td>Göktuğ Karakaşlı</td>
+    <td><a href= "https://github.com/goktug97"> Göktuğ Karakaşlı</a></td>
     <td><a href= "https://www.tnt.uni-hannover.de/staff/benjamin/">Carolin Benjamins </a></td>
     <td><a href= "https://ml.informatik.uni-freiburg.de/profile/adriaensen/">Steven Adriaensen </a> </td>
   </tr>
