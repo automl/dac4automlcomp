@@ -43,20 +43,22 @@ We will provide you with certificates of participation (physical as well as digi
 ### Organizers
 The DAC4AutoML competition is organized by the [AutoML Freiburg-Hannover group](automl.org).
 
+<div>
 <figure>
     <img src="theresa.jpg" width="150" height="200">
     <font size="2">
-    <figcaption> Abb.1: <a href= "https://www.tnt.uni-hannover.de/staff/eimer/">Theresa Eimer </a> 
+    <figcaption> <a href= "https://www.tnt.uni-hannover.de/staff/eimer/">Theresa Eimer </a> 
     </figcaption>
     </font>
 </figure>
 <figure>
     <img src="raghu.jpg" width="185" height="200">
     <font size="2">
-    <figcaption> Abb.1: <a href= "https://www.tnt.uni-hannover.de/staff/eimer/">Raghu Rajan </a> 
+    <figcaption> <a href= "https://www.tnt.uni-hannover.de/staff/eimer/">Raghu Rajan </a> 
     </figcaption>
     </font>
 </figure>
+</div>
 
 <img src="theresa.jpg" width="150" height="200"> <img src="raghu.jpg" width="180" height="200"> <img src="aditya.jpg" width="150" height="200">
 
