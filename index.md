@@ -44,7 +44,7 @@ We will provide you with certificates of participation (physical as well as digi
 The DAC4AutoML competition is organized by the [AutoML Freiburg-Hannover group](automl.org).
 
 
-<img src="theresa.jpg" width="150" height="200"> <img src="raghu.jpg" width="200" height="200"> <img src="aditya.jpg" width="150" height="200">
+<img src="theresa.jpg" width="150" height="200"> <img src="raghu.jpg" width="180" height="200"> <img src="aditya.jpg" width="150" height="200">
 
 <img src="goktug.jpeg" width="150" height="200"> <img src="carolin.jpg" width="150" height="200"> <img src="steven.jpg" width="150" height="200">
 
