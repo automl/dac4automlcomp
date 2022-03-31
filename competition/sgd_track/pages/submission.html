@@ -1,0 +1,41 @@
+<h2 id="submission">Submission</h2>
+<p>We ask you to submit a solution policy, which dynamically adjusts the
+hyperparameters of the algorithm being executed.</p>
+
+<h3 id="format">Format</h3>
+<p>Your solution should be submitted as a <code>.zip</code>-file.</p>
+
+<p>The <code>.zip</code>-file should not exceed TODO MBs and contain the following:</p>
+
+<ul>
+    <li><code>metadata</code>: Empty file, required by CodaLab.</li>
+    <li><code>requirements.txt</code>: The required packages to run your solution.</li>
+    <li><code>solution.py</code>: It should contain a method loading your policy with the signature <code>def load_solution() -> DACPolicy</code>.</li>
+    <li><code>description.pdf</code>: Description of your solution (1-2 pages). Please find more about the content in the
+        <a href="https://github.com/automl/dac4automlcomp/submission_template/description.pdf">template description</a>.</li>
+    <li>Optionally: Your training code.</li>
+</ul>
+
+<p>If you did not handcraft your policy, the code for generating the
+policy should also be part of the submission. This solution policy needs
+to be compatible with the evaluation code provided by us. You can take a
+look at our examples on how to structure your submission and also take a look
+at the <a href="https://github.com/automl/dac4automlcomp/submission_template">submission template</a>.</p>
+
+<h3 id="evaluation-procedure">Evaluation Procedure</h3>
+<p>We will perform several evaluation runs on all of our test instances
+(instances not seen during training, but drawn from the same
+distribution as the training instances). The final ranking of the
+participants will be decided by their average rank on each instance. Our
+metric for deciding the rank on a given instance is the mean performance
+across seeds. While the competition is running, the performance ranks
+for the leaderboard will be measured on a validation set. For the final
+ranks of the participants, we will use an unseen test set.</p>
+<p>TODO Reproducibility bonus?</p>
+
+<p>We will also limit the evaluation cost:</p>
+<ul>
+    <li>CPU Time: TODO</li>
+    <li>Memory: TODO</li>
+    <li>Disk usage: TODO</li>
+</ul>

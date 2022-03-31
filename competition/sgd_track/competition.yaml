@@ -1,0 +1,50 @@
+title: DAC4AutoML Competition
+description: Dynamic Algorithm Configuration for Deep Learning and Reinforcement Learning
+start_date: 2022-03-09 00:00:00+00:00
+end_date: 2022-06-18 00:00:00+00:00
+competition_docker_image: raghuspacerajan/dac4automlpy39
+image: logo.png
+has_registration: true
+force_submission_to_leaderboard: false
+disallow_leaderboard_modifying: false
+enable_detailed_results: false
+admin_names: RaghuSpaceRajan,Benjam,adriaens,TheEimer
+html:
+  data: data.html
+  evaluation: evaluation.html
+  get_starting_kit: get_starting_kit.html
+  overview: overview.html
+  terms: terms.html
+phases:
+  0:
+    auto_migration: false
+    color: white
+    description: null
+    ingestion_program: ingestion_program_1.zip
+    is_scoring_only: false
+    label: Competiton
+    max_submissions: 100
+    max_submissions_per_day: 999
+    phasenumber: 1
+    reference_data: reference_data_1.zip
+    scoring_program: scoring_program_1.zip
+    start_date: 2022-03-09 00:00:00+00:00
+leaderboard:
+  columns:
+    DLSCORES:
+      label: Cost
+      leaderboard: &id001
+        label: DLResults
+        rank: 1
+      rank: 1
+      sort: desc
+    RLSCORES:
+      label: Cost
+      leaderboard: &id002
+        label: RLResults
+        rank: 1
+      rank: 1
+      sort: desc
+  leaderboards:
+    DLResults: *id001
+    RLResults: *id002

@@ -1,0 +1,69 @@
+<h1> DAC4SGD Scenario Details </h1>
+<p>In this challenge, we cast the problem of adaptive learning rate control in SGD as a Dynamic Algorithm Configuration (DAC) problem.</p> 
+<p>In a DAC scenario, we are given a <b> target algorithm </b> with one or more <b> dynamically reconfigurable parameters </b> and our objective is to find a <b> dynamic configuration policy </b> choosing a valid parameter setting at every <b> reconfiguration point </b> as to minimize a given <b> cost metric </b> across a given <b> target problem distribution</b>.</p>
+<p>Below we detail each of the DAC components for the DAC scenario we consider in the DAC4SGD challenge:</p>
+<h3> Target Algorithm </h3>
+The target algorithm implements a standard PyTorch training pipeline optimizing the parameters of a neural network model to minimizing a differentiable loss for a labeled dataset. More specifically, it first splits the dataset into a training and validation set. The training set is further randomly partitioned into multiple mini-batches, and the parameters of the model are initialized randomly. The training then iterates multiple times over the training set, one mini-batch at the time. For each mini-batch, backpropagation is performed to determine the gradient of the loss w.r.t. the model's parameters and the parameters are updated using the PyTorch AdamW optimizer. After each epoch (full pass of the dataset), the model is evaluated on the validation set. When a given maximum number of steps has been reached, the final model is evaluated, and the model having the lowest validation loss of all evaluated models is returned as solution.
+<h3> Dynamically Reconfigurable Parameters </h3>
+In this training pipeline, you are to dynamically reconfigure a single hyperparameter: The learning rate parameter (lr) of the AdamW optimizer. All parameters of the model share the same learning rate (i.e., belong to a single parameter group). This hyperparameter can take any non-negative real value and linearly scales the effective step-size of the optimizer.
+<h3> Reconfiguration Points </h3>
+You are given the opportunity to reconfigure the learning rate before every optimizer step (i.e., after every backprop). However, there is no need to actually change it every step (the same value can be passed). Note that this step-wise interaction with the target algorithm must occur through an OpenAI Gym interface, where gym.Env.reset simulates the target algorithm up until the first reconfiguration point and gym.Env.step until the next reconfiguration point. 
+<h3> Target Problem Distribution </h3>
+<p> The objective in this challenge is to optimally control the learning rate of AdamW across a variety of different learning tasks and pipelines. To this end, target problem instances randomly vary various aspects of the task and pipeline:
+<dl>
+  <dt>dataset</dt>
+  <dd>The dataset used for training (one of MNIST, CIFAR-10, Fashion-MNIST)</dd>
+  <dt>model</dt>
+  <dd>The neural network model that is being optimized. This can either be a small MLP or simple convnet, varying in number of layers, units/filters per layer, filter sizes, activations, and usage of batchnorm.</dd>
+  <dt>optimizer_params</dt>
+  <dd>The values for the other AdamW hyperparameters (e.g., weight decay).</dd>
+  <dt>loss</dt>
+  <dd>Loss criterion to be minimized. In the challenge, all instances use cross entropy loss. </dd>
+  <dt>batch_size</dt>
+  <dd>The number of samples in a mini-batch, varies from 16 to 256 </dd>
+  <dt>fraction_of_dataset</dt>
+  <dd>Each of the used datasets specifies a train/test split. However, not every pipeline will use all train examples. This instance feature specifies the fraction of the training data that will be used as dataset (either for parameter updates or evaluation)  </dd>
+  <dt>train_validation_ratio</dt>
+  <dd>This instance feature specifies the fraction of the used dataset used for training (remainder is used for evaluation) </dd>
+  <dt>loaders</dt>
+  <dd>The triplet of Pytorch dataloaders that will be used to load the train/validation/test data. These determine the specific samples included in each partition (mini-batch).</dd>
+  <dt>cutoff</dt>
+  <dd>The budget available for optimization in number of optimization steps. After cutoff steps, training will be terminated. This value varies strongly (300-3600 steps), but for the challenge is set such that (i) we terminate after an N epochs and (ii) the wall-clock time on the evaluation machine for each instance is roughly comparable (30+-15s). </dd>
+  <dt>crash_penalty</dt>
+  <dd>The cost of failing to failing to find a model with evaluation loss < crash_penalty (e.g., due to divergence or crashes in the first epoch). This is set to the expected loss of a random model (i.e., ln(10) in the competition). </dd>
+</dl>
+and your solution policy should aim to perform well across all of these.</p>
+<h3> Cost Metric </h3>
+<p> The objective is to train a model with good generalization performance. As per-instance cost metric, the challenge therefore uses the cross entropy loss on the test partition of the model returned by the training pipeline. If the training for some reason fails to return a model, the cost will equal the crash_penalty.</p>
+<h3> Dynamic Configuration Policy </h3>
+<p>
+Solution policies may reconfigure the learning rate based on variety of different information. For instance, they may use:
+<ul>
+<li>Observations of the dynamic state of the training pipeline (provided at every reconfiguration point through DACPolicy.act)
+<dl>
+  <dt>steps</dt>
+  <dd>The number of optimization steps performed thus far</dd>
+  <dt>loss</dt>
+  <dd>The loss for each sample in the current mini-batch</dd>
+  <dt>validation_loss</dt>
+  <dd>At the end of each epoch, equal to the average loss on the validation set (None otherwise)</dd>
+  <dt>crashed</dt>
+  <dd>Indicates that execution terminated prematurely (done will also be true)</dd>
+</dl>
+</li>
+<li>The entire history of these state observations within the current test run (it may be stateful within a single test run, but not across, i.e., DACPolicy.reset should reset that state)<li>
+<li>Features of the current target problem instance (except for the loaders)</li>
+<li>A random number generator (as long as it is seeded using DACPolicy.seed and deterministic otherwise)</li>
+</ul>
+We provide various examples of possible solution policies in the competition repo. Note that the challenge is looking for creative solutions and therefore aims to minimally constrain the policy space. That being said, your solution policy should ...
+<ul>
+<li>correctly implement the standard DACPolicy interface</li>
+<li>not transfer experience across test runs </li>
+<li>only interact with the training pipeline by changing the learning rate. In particular, while it may read, it may not modify the instance or dynamic state of the training pipeline in any way.</li>
+<li>impose limited overhead as to not violate the evaluation resource constraints.</li>
+<li>not explicitely overfit the target instance distribution, i.e. it should not fail when applied to an out of distribution instance. For example, when using a different dataset.</li>
+<li>not rely on information that would be not available in a real world setting, e.g., info about the test set.</li>
+</lu>
+The organizers retain the right to disqualify submissions whose solution policy violates these constraints. Note that some constraints may leave room for interpretation, in doubt, please contact one of the organizers.
+</p>
+
