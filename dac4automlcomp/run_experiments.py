@@ -1,13 +1,6 @@
 import argparse
 import os
-# os.environ['OPENBLAS_NUM_THREADS'] = '1'
-print("os.environ:", os.environ)
-import resource
-print("resource.RLIMIT_NPROC,CPU:", resource.RLIMIT_NPROC, resource.RLIMIT_CPU)
 
-# resource.setrlimit(resource.RLIMIT_CPU, (limits["time"], limits["time"]))
-# resource.setrlimit(resource.RLIMIT_NPROC, (1000, 1000))
-# print("resource.RLIMIT_NPROC,CPU:", resource.RLIMIT_NPROC, resource.RLIMIT_CPU)
 import time
 import gym
 import numpy as np
