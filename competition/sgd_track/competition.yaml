@@ -23,13 +23,13 @@ phases:
     description: null
     ingestion_program: ingestion_program_1.zip
     is_scoring_only: false
-    label: Competiton
+    label: Development Phase
     max_submissions: 999
     max_submissions_per_day: 5
     phasenumber: 1
     reference_data: reference_data_1.zip
     scoring_program: scoring_program_1.zip
-    start_date: 2022-04-04 00:00:00+00:00
+    start_date: 2022-03-04 00:00:00+00:00
 leaderboard:
   leaderboards:
     Results: &RESULTS
