@@ -13,27 +13,27 @@ Dynamic Algorithm Configuration is a generalization of the well-known paradigms 
 
 While DAC has been applied to Computer Vision problems before (Daniel et al., 2016; Xu et al., 2017; Almeida et al., 2021), the research thus far has yet to yield practical online hyperparameter adaptation policies. Furthermore, the associated code often has not even been released and the experimental setups have been hard to replicate from the papers alone. In short, the challenge can be described as follows:
 
--Goal: Dynamically adapt the learning rate of the SGD optimizer
--Based on the extended version of the SGDBenchmark included in DACBench.
--Provided baselines: Static learning rate, cosine annealing (Loshchilov and Hutter, 2017), reduce learning rate on pleateu (Pytorch; Paszke et al., 2019) and a basic RL agent.
--CodaLab competition page: TODO
+- Goal: Dynamically adapt the learning rate of the SGD optimizer
+- Based on the extended version of the SGDBenchmark included in DACBench.
+- Provided baselines: Static learning rate, cosine annealing (Loshchilov and Hutter, 2017), reduce learning rate on pleateu (Pytorch; Paszke et al., 2019) and a basic RL agent.
+- CodaLab competition page: TODO
 
 ### Challenge: DAC4RL
 
 In Reinforcement Learning, dynamic configuration is common but does not currently target transfer or generalization (Jaderberg et al., 2017; Parker-Holder et al., 2020; Awad et al., 2021) either across variations of the same environment or across different environments. As a first step towards tackling this challenge, we will provide variations of five environments through different contexts for the CARL environments (Benjamins et al., 2021). Different contexts would then represent different train and test settings on which the participants’ approaches would be tested. This would explicitly encourage better transfer of hyperparameters between different contexts as envisioned in Kirk et al. (2021) and further progress on the DAC for RL state-of-the-art. In short, the challenge can be described as follows:
 
--Goal: Dynamically adapt the hyperparameter configuration of a stable_baselines3 agent
--Based on 5 CARL environments
--Provided baselines: Static configurations and learned configuration schedule found by state-of-the-art AutoRL tool PB2 (Parker-Holder et al., 2020)
--CodaLab competition page: TODO
+- Goal: Dynamically adapt the hyperparameter configuration of a stable_baselines3 agent
+- Based on 5 CARL environments
+- Provided baselines: Static configurations and learned configuration schedule found by state-of-the-art AutoRL tool PB2 (Parker-Holder et al., 2020)
+- CodaLab competition page: TODO
 
 ### Awards
 
 We will provide you with certificates of participation (physical as well as digital), including your placement and medals for the top 3 teams of each track. Further prizes for the top 3 teams are copies of the AutoML book signed by the editors. These teams will also receive monetary prizes sponsored by ChaLearn:
 
--250$ for first place
--150$ for second
--100$ for third
+- 250$ for first place
+- 150$ for second
+- 100$ for third
 
 ### Organizers
 The DAC4AutoML competition is organized by the [AutoML Freiburg-Hannover group](automl.org).
