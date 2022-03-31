@@ -52,7 +52,7 @@ The DAC4AutoML competition is organized by the [AutoML Freiburg-Hannover group](
   </tr>
   <tr>
     <td><a href= "https://www.tnt.uni-hannover.de/staff/eimer/">Theresa Eimer </a> </td>
-     <td><a href= "https://www.tnt.uni-hannover.de/staff/eimer/">Raghu Rajan </a> </td>
+     <td><a href= "https://ml.informatik.uni-freiburg.de/profile/rajan/">Raghu Rajan </a> </td>
      <td><a href= "https://www.tnt.uni-hannover.de/staff/mohan/">Aditya Mohan </a> </td>
   </tr>
  </table>
@@ -65,9 +65,9 @@ The DAC4AutoML competition is organized by the [AutoML Freiburg-Hannover group](
     <td><img src="steven.jpg" width="150" height="200"></td>
   </tr>
   <tr>
-    <td><a href= "https://www.tnt.uni-hannover.de/staff/eimer/">Göktuğ Karakaşlı</a> </td>
+    <td>Göktuğ Karakaşlı </td>
      <td><a href= "https://www.tnt.uni-hannover.de/staff/benjamin/">Carolin Benjamins </a> </td>
-     <td><a href= "https://www.tnt.uni-hannover.de/staff/mohan/">Steven Adriaensen </a>  </td>
+     <td><a href= "https://ml.informatik.uni-freiburg.de/profile/adriaensen/">Steven Adriaensen </a>  </td>
   </tr>
  </table>
  
@@ -78,7 +78,7 @@ The DAC4AutoML competition is organized by the [AutoML Freiburg-Hannover group](
     <td><img src="marius.jpg" width="150" height="200"></td>
   </tr>
   <tr>
-    <td><a href= "https://www.tnt.uni-hannover.de/staff/eimer/">Frank Hutter </td>
+    <td><a href= "https://ml.informatik.uni-freiburg.de/profile/hutter/">Frank Hutter </td>
      <td><a href= "https://www.tnt.uni-hannover.de/staff/lindauer/">Marius Lindauer </a> </td>
   </tr>
  </table>
