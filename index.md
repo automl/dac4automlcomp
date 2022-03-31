@@ -46,70 +46,39 @@ The DAC4AutoML competition is organized by the [AutoML Freiburg-Hannover group](
 
 <table>
   <tr>
-    <td><a href= "https://www.tnt.uni-hannover.de/staff/eimer/">Theresa Eimer </a> </td>
-     <td><a href= "https://www.tnt.uni-hannover.de/staff/eimer/">Raghu Rajan </a> </td>
-     <td><a href= "https://www.tnt.uni-hannover.de/staff/mohan/">Aditya Mohan </a> </td>
-  </tr>
-  <tr>
     <td><img src="theresa.jpg" width="150" height="200"></td>
     <td><img src="raghu.jpg" width="175" height="200"></td>
     <td><img src="aditya.jpg" width="150" height="200"></td>
   </tr>
+  <tr>
+    <td><a href= "https://www.tnt.uni-hannover.de/staff/eimer/">Theresa Eimer </a> </td>
+     <td><a href= "https://www.tnt.uni-hannover.de/staff/eimer/">Raghu Rajan </a> </td>
+     <td><a href= "https://www.tnt.uni-hannover.de/staff/mohan/">Aditya Mohan </a> </td>
+  </tr>
+ </table>
+
+
+<table>
+  <tr>
+    <td><img src="goktug.jpeg" width="150" height="200"></td>
+    <td><img src="carolin.jpg" width="150" height="200"></td>
+    <td><img src="steven.jpg" width="150" height="200"></td>
+  </tr>
+  <tr>
+    <td><a href= "https://www.tnt.uni-hannover.de/staff/eimer/">Göktuğ Karakaşlı</a> </td>
+     <td><a href= "https://www.tnt.uni-hannover.de/staff/benjamin/">Carolin Benjamins </a> </td>
+     <td><a href= "https://www.tnt.uni-hannover.de/staff/mohan/">Steven Adriaensen </a>  </td>
+  </tr>
  </table>
  
-<figure class="image">
-    <img src="theresa.jpg" width="150" height="200">
-    <font size="2">
-    <figcaption> <a href= "https://www.tnt.uni-hannover.de/staff/eimer/">Theresa Eimer </a> 
-    </figcaption>
-    </font>
-</figure>
-<figure>
-    <img src="raghu.jpg" width="175" height="200">
-    <font size="2">
-    <figcaption> <a href= "https://www.tnt.uni-hannover.de/staff/eimer/">Raghu Rajan </a> 
-    </figcaption>
-    </font>
-</figure>
-    <figure>
-    <img src="aditya.jpg" width="150" height="200">
-    <font size="2">
-    <figcaption> <a href= "https://www.tnt.uni-hannover.de/staff/mohan/">Aditya Mohan </a> 
-    </figcaption>
-    </font>
-</figure>
-
-<figure>
-    <img src="goktug.jpeg" width="150" height="200">
-    <figcaption class="figure-caption text-center"> <a href= "https://www.tnt.uni-hannover.de/staff/eimer/">Göktuğ Karakaşlı</a> 
-    </figcaption>
-</figure>
-
-<figure>
-    <img src="carolin.jpg" width="150" height="200">
-    <figcaption> <a href= "https://www.tnt.uni-hannover.de/staff/benjamin/">Carolin Benjamins </a> 
-    </figcaption>
-</figure>
-    
-<figure>
-    <img src="steven.jpg" width="150" height="200">
-    <font size="2">
-    <figcaption class="figure-caption text-center"> <a href= "https://www.tnt.uni-hannover.de/staff/mohan/">Steven Adriaensen </a> 
-    </figcaption>
-    </font>
-</figure>
-
-<figure>
-    <img src="frank.jpg" width="180" height="200">
-    <font size="2">
-    <figcaption> <a href= "https://www.tnt.uni-hannover.de/staff/eimer/">Frank Hutter </a> 
-    </figcaption>
-    </font>
-</figure>
-<figure>
-    <img src="marius.jpg" width="150" height="200">
-    <font size="2">
-    <figcaption> <a href= "https://www.tnt.uni-hannover.de/staff/lindauer/">Marius Lindauer </a> 
-    </figcaption>
-    </font>
-</figure>
+ 
+<table>
+  <tr>
+    <td><img src="frank.jpg" width="180" height="200"></td>
+    <td><img src="marius.jpg" width="150" height="200"></td>
+  </tr>
+  <tr>
+    <td><a href= "https://www.tnt.uni-hannover.de/staff/eimer/">Frank Hutter </td>
+     <td><a href= "https://www.tnt.uni-hannover.de/staff/lindauer/">Marius Lindauer </a> </td>
+  </tr>
+ </table>
