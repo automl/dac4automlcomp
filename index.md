@@ -43,8 +43,7 @@ We will provide you with certificates of participation (physical as well as digi
 ### Organizers
 The DAC4AutoML competition is organized by the [AutoML Freiburg-Hannover group](automl.org).
 
-<!---
-![Theresa Eimer](page_images/theresa.png "Theresa Eimer") ![Raghu Rajan](page_images/raghu.png "Raghu Rajan") ![Aditya Mohan](page_images/aditya.png "Aditya Mohan")
-![Göktuğ Karakaşlı](page_images/goektug.png "Göktuğ Karakaşlı") ![Carolin Benjamins](page_images/carolin.png "Carolin Benjamins") ![Steven Adriaensen](page_images/steven.png "Steven Adriaensen")
-![Frank Hutter](page_images/frank.png "Frank Hutter") ![Marius Lindauer](page_images/marius.png "Marius Lindauer")
---->
+![Theresa Eimer](theresa.jpg "Theresa Eimer") ![Raghu Rajan](raghu.jpg "Raghu Rajan") ![Aditya Mohan](aditya.jpg "Aditya Mohan")
+![Göktuğ Karakaşlı](carolin.png "Göktuğ Karakaşlı") ![Carolin Benjamins](carolin.jpg "Carolin Benjamins") ![Steven Adriaensen](steven.jpg "Steven Adriaensen")
+![Frank Hutter](frank.jpg "Frank Hutter") ![Marius Lindauer](marius.jpg "Marius Lindauer")
+
