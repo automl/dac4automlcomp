@@ -516,6 +516,12 @@ leaderboard:
       numeric_format: 4
       rank: 81
       sort: asc
+    duration:
+      leaderboard: *RESULTS
+      label: Duration
+      numeric_format: 0
+      rank: 0
+      sort: asc
     ave_score:
       leaderboard: *RESULTS
       label: Average Score
