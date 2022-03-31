@@ -70,22 +70,20 @@ The DAC4AutoML competition is organized by the [AutoML Freiburg-Hannover group](
 <div>
 <figure>
     <img src="goktug.jpeg" width="150" height="200">
-    <font size="2">
-    <figcaption> <a href= "https://www.tnt.uni-hannover.de/staff/eimer/">Göktuğ Karakaşlı</a> 
+    <figcaption class="figure-caption text-center"> <a href= "https://www.tnt.uni-hannover.de/staff/eimer/">Göktuğ Karakaşlı</a> 
     </figcaption>
-    </font>
 </figure>
+    
 <figure>
     <img src="carolin.jpg" width="150" height="200">
-    <font size="2">
     <figcaption> <a href= "https://www.tnt.uni-hannover.de/staff/benjamin/">Carolin Benjamins </a> 
     </figcaption>
-    </font>
 </figure>
-    <figure>
+    
+<figure>
     <img src="steven.jpg" width="150" height="200">
     <font size="2">
-    <figcaption> <a href= "https://www.tnt.uni-hannover.de/staff/mohan/">Steven Adriaensen </a> 
+    <figcaption class="figure-caption text-center"> <a href= "https://www.tnt.uni-hannover.de/staff/mohan/">Steven Adriaensen </a> 
     </figcaption>
     </font>
 </figure>
