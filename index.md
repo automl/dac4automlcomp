@@ -44,7 +44,7 @@ We will provide you with certificates of participation (physical as well as digi
 The DAC4AutoML competition is organized by the [AutoML Freiburg-Hannover group](automl.org).
 
 
-<table>
+<table class="center">
   <tr>
     <td><img src="theresa.jpg" width="150" height="200"></td>
     <td><img src="raghu.jpg" width="175" height="200"></td>
@@ -58,7 +58,7 @@ The DAC4AutoML competition is organized by the [AutoML Freiburg-Hannover group](
  </table>
 
 
-<table>
+<table class="center">
   <tr>
     <td><img src="goktug.jpeg" width="150" height="200"></td>
     <td><img src="carolin.jpg" width="150" height="200"></td>
@@ -72,7 +72,7 @@ The DAC4AutoML competition is organized by the [AutoML Freiburg-Hannover group](
  </table>
  
  
-<table>
+<table class="center">
   <tr>
     <td><img src="frank.jpg" width="180" height="200"></td>
     <td><img src="marius.jpg" width="150" height="200"></td>
