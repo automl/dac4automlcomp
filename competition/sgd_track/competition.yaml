@@ -1,6 +1,6 @@
 title: DAC4AutoML Competition - DAC4SGD Track
 description: Dynamic Algorithm Configuration for Learning Rate Control in Deep Learning
-start_date: 2022-03-09 00:00:00+00:00
+start_date: 2022-04-04 00:00:00+00:00
 end_date: 2022-06-18 00:00:00+00:00
 competition_docker_image: raghuspacerajan/dac4automlpy39
 image: logo.png
@@ -33,7 +33,7 @@ phases:
 leaderboard:
   leaderboards:
     Results: &RESULTS
-      label: RESULTS DAC4SGD TRACK (DEV-PHASE, columns show cost per instance)
+      label: RESULTS DAC4SGD TRACK (DEV-PHASE)
       rank: 1
   columns:
     cid_0:
@@ -524,7 +524,7 @@ leaderboard:
       sort: asc
     ave_score:
       leaderboard: *RESULTS
-      label: Average Score
+      label: Average Rank
       numeric_format: 4
       rank: 1
       computed:
