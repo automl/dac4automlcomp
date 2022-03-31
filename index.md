@@ -47,7 +47,7 @@ The DAC4AutoML competition is organized by the [AutoML Freiburg-Hannover group](
 <table class="center">
   <tr>
     <td><img src="theresa.jpg" width="150" height="200"></td>
-    <td><img src="raghu.jpg" width="175" height="200"></td>
+    <td><img src="raghu.jpg" width="200" height="200"></td>
     <td><img src="aditya.jpg" width="150" height="200"></td>
   </tr>
   <tr>
