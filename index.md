@@ -43,8 +43,8 @@ We will provide you with certificates of participation (physical as well as digi
 ### Organizers
 The DAC4AutoML competition is organized by the [AutoML Freiburg-Hannover group](automl.org).
 
-<img src="theresa.jpg.png" width="150" height="200"> <img src="raghu.jpg.png" width="150" height="200"> <img src="aditya.jpg.png" width="150" height="200">
-![Theresa Eimer](theresa.jpg "Theresa Eimer"){:height="200px" width="150px"} ![Raghu Rajan](raghu.jpg "Raghu Rajan"){:height="200px" width="150px"} ![Aditya Mohan](aditya.jpg "Aditya Mohan"){:height="200px" width="150px"}
-![Göktuğ Karakaşlı](carolin.png "Göktuğ Karakaşlı"){:height="200px" width="150px"} ![Carolin Benjamins](carolin.jpg "Carolin Benjamins"){:height="200px" width="150px"} ![Steven Adriaensen](steven.jpg "Steven Adriaensen"){:height="200px" width="150px"}
-![Frank Hutter](frank.jpg "Frank Hutter"){:height="200px" width="150px"} ![Marius Lindauer](marius.jpg "Marius Lindauer"){:height="200px" width="150px"}
+
+<img src="theresa.jpg" width="150" height="200"> <img src="raghu.jpg" width="150" height="200"> <img src="aditya.jpg" width="150" height="200">
+<img src="goktug.jpeg" width="150" height="200"> <img src="carolin.jpg.png" width="150" height="200"> <img src="steven.jpg" width="150" height="200">
+<img src="frank.jpg" width="150" height="200"> <img src="marius.jpg" width="150" height="200"> 
 
