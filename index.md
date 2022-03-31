@@ -52,17 +52,58 @@ The DAC4AutoML competition is organized by the [AutoML Freiburg-Hannover group](
     </font>
 </figure>
 <figure>
-    <img src="raghu.jpg" width="185" height="200">
+    <img src="raghu.jpg" width="175" height="200">
     <font size="2">
     <figcaption> <a href= "https://www.tnt.uni-hannover.de/staff/eimer/">Raghu Rajan </a> 
     </figcaption>
     </font>
 </figure>
+    <figure>
+    <img src="aditya.jpg" width="150" height="200">
+    <font size="2">
+    <figcaption> <a href= "https://www.tnt.uni-hannover.de/staff/mohan/">Aditya Mohan </a> 
+    </figcaption>
+    </font>
+</figure>
 </div>
 
-<img src="theresa.jpg" width="150" height="200"> <img src="raghu.jpg" width="180" height="200"> <img src="aditya.jpg" width="150" height="200">
+<div>
+<figure>
+    <img src="goktug.jpeg" width="150" height="200">
+    <font size="2">
+    <figcaption> <a href= "https://www.tnt.uni-hannover.de/staff/eimer/">Göktuğ Karakaşlı</a> 
+    </figcaption>
+    </font>
+</figure>
+<figure>
+    <img src="carolin.jpg" width="150" height="200">
+    <font size="2">
+    <figcaption> <a href= "https://www.tnt.uni-hannover.de/staff/benjamin/">Carolin Benjamins </a> 
+    </figcaption>
+    </font>
+</figure>
+    <figure>
+    <img src="steven.jpg" width="150" height="200">
+    <font size="2">
+    <figcaption> <a href= "https://www.tnt.uni-hannover.de/staff/mohan/">Steven Adriaensen </a> 
+    </figcaption>
+    </font>
+</figure>
+</div>
 
-<img src="goktug.jpeg" width="150" height="200"> <img src="carolin.jpg" width="150" height="200"> <img src="steven.jpg" width="150" height="200">
-
-<img src="frank.jpg" width="180" height="200"> <img src="marius.jpg" width="150" height="200"> 
-
+<div>
+<figure>
+    <img src="frank.jpg" width="180" height="200">
+    <font size="2">
+    <figcaption> <a href= "https://www.tnt.uni-hannover.de/staff/eimer/">Frank Hutter </a> 
+    </figcaption>
+    </font>
+</figure>
+<figure>
+    <img src="marius.jpg" width="150" height="200">
+    <font size="2">
+    <figcaption> <a href= "https://www.tnt.uni-hannover.de/staff/lindauer/">Marius Lindauer </a> 
+    </figcaption>
+    </font>
+</figure>
+</div>
