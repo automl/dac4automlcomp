@@ -6,7 +6,7 @@ Welcome to our DAC4AutoML competition! We challenge you to dynamically adapt hyp
 
 ### Motivation
 
-Hyperparameters in Deep Learning (DL) and Reinforcement Learning (RL) are often adjusted online, while learning. This dynamic adaptation is most commonly achieved using handcrafted heuristics (Battiti et al., 2008; Kingma and Ba, 2015; Loshchilov and Hutter, 2017; Drake et al., 2020) and, more rarely, using a (meta-)learned control policy (Daniel et al., 2016; Sharma et al., 2019; Gomoluch et al., 2020; Almeida et al., 2021). We believe there is still a lot of potential for finding more such sophisticated solutions that generalize better to different problem settings. Therefore, this competition builds upon the Dynamic Algorithm Configuration (DAC) framework (Biedenkapp et al., 2020) to provide a competition setting that tests both the quality of hyperparameter configuration policies as well as their generalization capabilities.
+Hyperparameters in Deep Learning (DL) and Reinforcement Learning (RL) are often adjusted online, while learning. This dynamic adaptation is most commonly achieved using handcrafted heuristics ([Battiti et al., 2008](https://core.ac.uk/download/pdf/11829614.pdf); [Kingma and Ba, 2015](https://arxiv.org/pdf/1412.6980.pdf); [Loshchilov and Hutter, 2017](https://arxiv.org/pdf/1608.03983.pdf); [Drake et al., 2020](https://nottingham-repository.worktribe.com/OutputFile/3010925)) and, more rarely, using a (meta-)learned control policy ([Daniel et al., 2016](); Sharma et al., 2019; Gomoluch et al., 2020; Almeida et al., 2021). We believe there is still a lot of potential for finding more such sophisticated solutions that generalize better to different problem settings. Therefore, this competition builds upon the Dynamic Algorithm Configuration (DAC) framework (Biedenkapp et al., 2020) to provide a competition setting that tests both the quality of hyperparameter configuration policies as well as their generalization capabilities.
 
 #### Dynamic Algorithm Configuration
 
@@ -31,6 +31,9 @@ In Reinforcement Learning, dynamic configuration is common but does not currentl
 - Based on 5 CARL environments
 - Provided baselines: Static configurations and learned configuration schedule found by state-of-the-art AutoRL tool PB2 (Parker-Holder et al., 2020)
 - CodaLab competition page: TBA
+
+### Dates
+Submission starts on the **04.04.2022** and is possible throughout the training phase until the **18.06.2022 AOE**. Afterwards we will evaluate the submissions and announce the results at the AutoML-Conf 2022.
 
 ### Awards
 
