@@ -38,481 +38,481 @@ leaderboard:
   columns:
     cid_0:
       leaderboard: *RESULTS
-      label: i0
+      label: cost_i0
       numeric_format: 4
       rank: 2
       sort: asc
     cid_1:
       leaderboard: *RESULTS
-      label: i1
+      label: cost_i1
       numeric_format: 4
       rank: 3
       sort: asc
     cid_2:
       leaderboard: *RESULTS
-      label: i2
+      label: cost_i2
       numeric_format: 4
       rank: 4
       sort: asc
     cid_3:
       leaderboard: *RESULTS
-      label: i3
+      label: cost_i3
       numeric_format: 4
       rank: 5
       sort: asc
     cid_4:
       leaderboard: *RESULTS
-      label: i4
+      label: cost_i4
       numeric_format: 4
       rank: 6
       sort: asc
     cid_5:
       leaderboard: *RESULTS
-      label: i5
+      label: cost_i5
       numeric_format: 4
       rank: 7
       sort: asc
     cid_6:
       leaderboard: *RESULTS
-      label: i6
+      label: cost_i6
       numeric_format: 4
       rank: 8
       sort: asc
     cid_7:
       leaderboard: *RESULTS
-      label: i7
+      label: cost_i7
       numeric_format: 4
       rank: 9
       sort: asc
     cid_8:
       leaderboard: *RESULTS
-      label: i8
+      label: cost_i8
       numeric_format: 4
       rank: 10
       sort: asc
     cid_9:
       leaderboard: *RESULTS
-      label: i9
+      label: cost_i9
       numeric_format: 4
       rank: 11
       sort: asc
     cid_10:
       leaderboard: *RESULTS
-      label: i10
+      label: cost_i10
       numeric_format: 4
       rank: 12
       sort: asc
     cid_11:
       leaderboard: *RESULTS
-      label: i11
+      label: cost_i11
       numeric_format: 4
       rank: 13
       sort: asc
     cid_12:
       leaderboard: *RESULTS
-      label: i12
+      label: cost_i12
       numeric_format: 4
       rank: 14
       sort: asc
     cid_13:
       leaderboard: *RESULTS
-      label: i13
+      label: cost_i13
       numeric_format: 4
       rank: 15
       sort: asc
     cid_14:
       leaderboard: *RESULTS
-      label: i14
+      label: cost_i14
       numeric_format: 4
       rank: 16
       sort: asc
     cid_15:
       leaderboard: *RESULTS
-      label: i15
+      label: cost_i15
       numeric_format: 4
       rank: 17
       sort: asc
     cid_16:
       leaderboard: *RESULTS
-      label: i16
+      label: cost_i16
       numeric_format: 4
       rank: 18
       sort: asc
     cid_17:
       leaderboard: *RESULTS
-      label: i17
+      label: cost_i17
       numeric_format: 4
       rank: 19
       sort: asc
     cid_18:
       leaderboard: *RESULTS
-      label: i18
+      label: cost_i18
       numeric_format: 4
       rank: 20
       sort: asc
     cid_19:
       leaderboard: *RESULTS
-      label: i19
+      label: cost_i19
       numeric_format: 4
       rank: 21
       sort: asc
     cid_20:
       leaderboard: *RESULTS
-      label: i20
+      label: cost_i20
       numeric_format: 4
       rank: 22
       sort: asc
     cid_21:
       leaderboard: *RESULTS
-      label: i21
+      label: cost_i21
       numeric_format: 4
       rank: 23
       sort: asc
     cid_22:
       leaderboard: *RESULTS
-      label: i22
+      label: cost_i22
       numeric_format: 4
       rank: 24
       sort: asc
     cid_23:
       leaderboard: *RESULTS
-      label: i23
+      label: cost_i23
       numeric_format: 4
       rank: 25
       sort: asc
     cid_24:
       leaderboard: *RESULTS
-      label: i24
+      label: cost_i24
       numeric_format: 4
       rank: 26
       sort: asc
     cid_25:
       leaderboard: *RESULTS
-      label: i25
+      label: cost_i25
       numeric_format: 4
       rank: 27
       sort: asc
     cid_26:
       leaderboard: *RESULTS
-      label: i26
+      label: cost_i26
       numeric_format: 4
       rank: 28
       sort: asc
     cid_27:
       leaderboard: *RESULTS
-      label: i27
+      label: cost_i27
       numeric_format: 4
       rank: 29
       sort: asc
     cid_28:
       leaderboard: *RESULTS
-      label: i28
+      label: cost_i28
       numeric_format: 4
       rank: 30
       sort: asc
     cid_29:
       leaderboard: *RESULTS
-      label: i29
+      label: cost_i29
       numeric_format: 4
       rank: 31
       sort: asc
     cid_30:
       leaderboard: *RESULTS
-      label: i30
+      label: cost_i30
       numeric_format: 4
       rank: 32
       sort: asc
     cid_31:
       leaderboard: *RESULTS
-      label: i31
+      label: cost_i31
       numeric_format: 4
       rank: 33
       sort: asc
     cid_32:
       leaderboard: *RESULTS
-      label: i32
+      label: cost_i32
       numeric_format: 4
       rank: 34
       sort: asc
     cid_33:
       leaderboard: *RESULTS
-      label: i33
+      label: cost_i33
       numeric_format: 4
       rank: 35
       sort: asc
     cid_34:
       leaderboard: *RESULTS
-      label: i34
+      label: cost_i34
       numeric_format: 4
       rank: 36
       sort: asc
     cid_35:
       leaderboard: *RESULTS
-      label: i35
+      label: cost_i35
       numeric_format: 4
       rank: 37
       sort: asc
     cid_36:
       leaderboard: *RESULTS
-      label: i36
+      label: cost_i36
       numeric_format: 4
       rank: 38
       sort: asc
     cid_37:
       leaderboard: *RESULTS
-      label: i37
+      label: cost_i37
       numeric_format: 4
       rank: 39
       sort: asc
     cid_38:
       leaderboard: *RESULTS
-      label: i38
+      label: cost_i38
       numeric_format: 4
       rank: 40
       sort: asc
     cid_39:
       leaderboard: *RESULTS
-      label: i39
+      label: cost_i39
       numeric_format: 4
       rank: 41
       sort: asc
     cid_40:
       leaderboard: *RESULTS
-      label: i40
+      label: cost_i40
       numeric_format: 4
       rank: 42
       sort: asc
     cid_41:
       leaderboard: *RESULTS
-      label: i41
+      label: cost_i41
       numeric_format: 4
       rank: 43
       sort: asc
     cid_42:
       leaderboard: *RESULTS
-      label: i42
+      label: cost_i42
       numeric_format: 4
       rank: 44
       sort: asc
     cid_43:
       leaderboard: *RESULTS
-      label: i43
+      label: cost_i43
       numeric_format: 4
       rank: 45
       sort: asc
     cid_44:
       leaderboard: *RESULTS
-      label: i44
+      label: cost_i44
       numeric_format: 4
       rank: 46
       sort: asc
     cid_45:
       leaderboard: *RESULTS
-      label: i45
+      label: cost_i45
       numeric_format: 4
       rank: 47
       sort: asc
     cid_46:
       leaderboard: *RESULTS
-      label: i46
+      label: cost_i46
       numeric_format: 4
       rank: 48
       sort: asc
     cid_47:
       leaderboard: *RESULTS
-      label: i47
+      label: cost_i47
       numeric_format: 4
       rank: 49
       sort: asc
     cid_48:
       leaderboard: *RESULTS
-      label: i48
+      label: cost_i48
       numeric_format: 4
       rank: 50
       sort: asc
     cid_49:
       leaderboard: *RESULTS
-      label: i49
+      label: cost_i49
       numeric_format: 4
       rank: 51
       sort: asc
     cid_50:
       leaderboard: *RESULTS
-      label: i50
+      label: cost_i50
       numeric_format: 4
       rank: 52
       sort: asc
     cid_51:
       leaderboard: *RESULTS
-      label: i51
+      label: cost_i51
       numeric_format: 4
       rank: 53
       sort: asc
     cid_52:
       leaderboard: *RESULTS
-      label: i52
+      label: cost_i52
       numeric_format: 4
       rank: 54
       sort: asc
     cid_53:
       leaderboard: *RESULTS
-      label: i53
+      label: cost_i53
       numeric_format: 4
       rank: 55
       sort: asc
     cid_54:
       leaderboard: *RESULTS
-      label: i54
+      label: cost_i54
       numeric_format: 4
       rank: 56
       sort: asc
     cid_55:
       leaderboard: *RESULTS
-      label: i55
+      label: cost_i55
       numeric_format: 4
       rank: 57
       sort: asc
     cid_56:
       leaderboard: *RESULTS
-      label: i56
+      label: cost_i56
       numeric_format: 4
       rank: 58
       sort: asc
     cid_57:
       leaderboard: *RESULTS
-      label: i57
+      label: cost_i57
       numeric_format: 4
       rank: 59
       sort: asc
     cid_58:
       leaderboard: *RESULTS
-      label: i58
+      label: cost_i58
       numeric_format: 4
       rank: 60
       sort: asc
     cid_59:
       leaderboard: *RESULTS
-      label: i59
+      label: cost_i59
       numeric_format: 4
       rank: 61
       sort: asc
     cid_60:
       leaderboard: *RESULTS
-      label: i60
+      label: cost_i60
       numeric_format: 4
       rank: 62
       sort: asc
     cid_61:
       leaderboard: *RESULTS
-      label: i61
+      label: cost_i61
       numeric_format: 4
       rank: 63
       sort: asc
     cid_62:
       leaderboard: *RESULTS
-      label: i62
+      label: cost_i62
       numeric_format: 4
       rank: 64
       sort: asc
     cid_63:
       leaderboard: *RESULTS
-      label: i63
+      label: cost_i63
       numeric_format: 4
       rank: 65
       sort: asc
     cid_64:
       leaderboard: *RESULTS
-      label: i64
+      label: cost_i64
       numeric_format: 4
       rank: 66
       sort: asc
     cid_65:
       leaderboard: *RESULTS
-      label: i65
+      label: cost_i65
       numeric_format: 4
       rank: 67
       sort: asc
     cid_66:
       leaderboard: *RESULTS
-      label: i66
+      label: cost_i66
       numeric_format: 4
       rank: 68
       sort: asc
     cid_67:
       leaderboard: *RESULTS
-      label: i67
+      label: cost_i67
       numeric_format: 4
       rank: 69
       sort: asc
     cid_68:
       leaderboard: *RESULTS
-      label: i68
+      label: cost_i68
       numeric_format: 4
       rank: 70
       sort: asc
     cid_69:
       leaderboard: *RESULTS
-      label: i69
+      label: cost_i69
       numeric_format: 4
       rank: 71
       sort: asc
     cid_70:
       leaderboard: *RESULTS
-      label: i70
+      label: cost_i70
       numeric_format: 4
       rank: 72
       sort: asc
     cid_71:
       leaderboard: *RESULTS
-      label: i71
+      label: cost_i71
       numeric_format: 4
       rank: 73
       sort: asc
     cid_72:
       leaderboard: *RESULTS
-      label: i72
+      label: cost_i72
       numeric_format: 4
       rank: 74
       sort: asc
     cid_73:
       leaderboard: *RESULTS
-      label: i73
+      label: cost_i73
       numeric_format: 4
       rank: 75
       sort: asc
     cid_74:
       leaderboard: *RESULTS
-      label: i74
+      label: cost_i74
       numeric_format: 4
       rank: 76
       sort: asc
     cid_75:
       leaderboard: *RESULTS
-      label: i75
+      label: cost_i75
       numeric_format: 4
       rank: 77
       sort: asc
     cid_76:
       leaderboard: *RESULTS
-      label: i76
+      label: cost_i76
       numeric_format: 4
       rank: 78
       sort: asc
     cid_77:
       leaderboard: *RESULTS
-      label: i77
+      label: cost_i77
       numeric_format: 4
       rank: 79
       sort: asc
     cid_78:
       leaderboard: *RESULTS
-      label: i78
+      label: cost_i78
       numeric_format: 4
       rank: 80
       sort: asc
     cid_79:
       leaderboard: *RESULTS
-      label: i79
+      label: cost_i79
       numeric_format: 4
       rank: 81
       sort: asc
@@ -520,7 +520,7 @@ leaderboard:
       leaderboard: *RESULTS
       label: Duration
       numeric_format: 0
-      rank: 0
+      rank: 82
       sort: asc
     ave_score:
       leaderboard: *RESULTS
