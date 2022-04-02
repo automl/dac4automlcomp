@@ -520,13 +520,13 @@ leaderboard:
       leaderboard: *RESULTS
       label: Duration
       numeric_format: 0
-      rank: 82
+      rank: 1
       sort: asc
     ave_score:
       leaderboard: *RESULTS
       label: Average Rank
       numeric_format: 4
-      rank: 1
+      rank: 0
       computed:
         operation: Avg
         fields: cid_0, cid_1, cid_2, cid_3, cid_4, cid_5, cid_6, cid_7, cid_8, cid_9, cid_10, cid_11, cid_12, cid_13, cid_14, cid_15, cid_16, cid_17, cid_18, cid_19, cid_20, cid_21, cid_22, cid_23, cid_24, cid_25, cid_26, cid_27, cid_28, cid_29, cid_30, cid_31, cid_32, cid_33, cid_34, cid_35, cid_36, cid_37, cid_38, cid_39, cid_40, cid_41, cid_42, cid_43, cid_44, cid_45, cid_46, cid_47, cid_48, cid_49, cid_50, cid_51, cid_52, cid_53, cid_54, cid_55, cid_56, cid_57, cid_58, cid_59, cid_60, cid_61, cid_62, cid_63, cid_64, cid_65, cid_66, cid_67, cid_68, cid_69, cid_70, cid_71, cid_72, cid_73, cid_74, cid_75, cid_76, cid_77, cid_78, cid_79
