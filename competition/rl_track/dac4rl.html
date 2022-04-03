@@ -1,73 +1,29 @@
 <h1> DAC4RL Scenario Details </h1>
 <p>In this challenge, we cast the problem of adaptively setting hyperparameters in Reinforcement Learning (RL) as a Dynamic Algorithm Configuration (DAC) problem.</p>
-<p>In a DAC for RL scenario, we are given a <b> target agent </b> or <b>inner agent</b> with one or more <b> dynamically reconfigurable hyperparameters </b> and our objective is to find a <b> DAC policy </b> or <b>outer agent</b> that chooses a valid hyperparameter setting at every <b> reconfiguration point </b> during training of the inner agent so as to maximize a given <b> reward metric </b> across a given <b> target environment distribution</b>. Each environment drawn from this distribution is termed a (problem) <b>instance</b> or <b>inner environment</b> in our DAC scenario. Each such environment varies various <b>context features</b> for the given environment. The problem instance in our case is a Gym Environment, and more specifically, a CARL environment which has a set of context features that can be varied. The target environment distribution consists of the following 5 CARL environments, each with their own set of context features: TODO. </p>
+<p>In a DAC for RL scenario, we are given a <b> target agent </b> or <b>inner agent</b> with one or more <b> dynamically reconfigurable hyperparameters </b> and our objective is to find a <b> DAC policy </b> or <b>outer agent</b> that chooses a valid hyperparameter setting at every <b> reconfiguration point </b> during training of the inner agent so as to maximize a given <b> reward metric </b> across a given <b> target environment distribution</b>. Each environment drawn from this distribution is termed a problem <b>instance</b> or an <b>inner environment</b>. Each such environment is created by varying various <b>context features</b> of a given environment. The problem instance in our case is a Gym Environment, and more specifically, a CARL environment which has a set of context features that can be varied. The target environment distribution consists of the following 5 CARL environments, each with their own set of context features: CARLPendulumEnv	CARLAcrobotEnv	CARLMountainCarContinuousEnv	CARLLunarLanderEnv	CARLCartPoleEnv. </p>
 
-<p>The DAC policy acts in an <b>outer environment</b> which is also implemented as a Gym Environment and randomly samples one of the target environments with a different context at reset. The target agent is then required to act on a sampled problem instance. Each step in the outer environment corresponds to 10,000 steps in the target environment. The DAC policy needs to set the target agent's hyperparameters at each such outer step. The outer level environment then returns a reward along with the next observation (TODO: describe observation features). This (outer) reward is the average of the (inner) reward over 100 rollouts at the end of the 10,000 inner steps for the target agent on the target environment. The DAC policy needs to set the hyperparameters such that the (outer) reward is maximized for each problem instance it encounters. The metric we employ <b>per instance</b> is the Area Under the Curve (AUC) of the learning curve of the collected (outer) reward. The metric we employ for the performance of a submitted DAC policy <b>across the instances</b> is the average of the ranks obtained by the policy on instances of each target environment. (The ranking is calculated among all the submissions received so far, with only one submission being considered for each team.)</p>
+<p>The DAC policy acts in an <b>outer environment</b> which is also implemented as a Gym Environment and randomly samples one of the target environments with a different set of changing contexts at reset. The target agent is then required to act on a sampled problem instance. Each step in the outer environment, also called an epoch, corresponds to 1/10 of the total timesteps for training in the target environment. Thus, the DAC policy needs to set the target agent's hyperparameters at each such outer step, after which the agent is trained for one epoch and then evaluated seperately on an evaluation environment for 100 rollouts. The (outer) environment then returns the mean reward of these 100 rollouts, along with the flag for whether the timesteps have been exhausted or not. Additionally, a state is returned to the outer agent, which is a dictionary that consists of a counter for the current epoch, the standard deviation of the evaluation rewards, a list of hte rewards obtained during training and the mean lenghts of the training episodes. Moreover, the reset function returns the name of the instantiated environment, the names of the changing context features, the values of all the defined context features nad the standard deviation of the distribution from which these contexts are sampled. The DAC policy needs to set the hyperparameters such that the (outer) reward is maximized for each problem instance it encounters. The metric we employ <b>per instance</b> is the Area Under the Curve (AUC) of the learning curve of the collected (outer) reward. The metric we employ for the performance of a submitted DAC policy <b>across the instances</b> is the average of the ranks obtained by the policy on instances of each target environment. (The ranking is calculated among all the submissions received so far, with only one submission being considered for each team.)</p>
 
 
-TODO: Aditya, please fill from here:
 <p>We now detail each of the DAC components for the DAC scenario we consider in the DAC4RL challenge:</p>
 <h3> Target Agent </h3>
-The target agent implements a Stable Baselines 3 training pipeline optimizing the parameters of a deep RL agent to maximize the collected reward in an environment selected from the target environment distribution.   agent will train  The metric we employ
+The target agent implements a Stable Baselines 3 training pipeline optimizing the parameters of a deep RL agent to maximize the collected reward in an environment selected from the target environment distribution. For this competition, we allow the target to be selected from among 3 common algorithms: DDPG, PPO and SAC. 
 <h3> Dynamically Reconfigurable Parameters </h3>
-In this training pipeline, you are to dynamically reconfigure a single hyperparameter: The learning rate parameter (lr) of the AdamW optimizer. All parameters of the model share the same learning rate (i.e., belong to a single parameter group). This hyperparameter can take any non-negative real value and linearly scales the effective step-size of the optimizer.
+For each of th e agents listed above, all the respective hyperparameters are dynamically reconfigurable. However, it needs to be noted that certain hyperparameters can only be applied at the first time an agent is instantiated, and thus, cannot be changed afterwards. 
 <h3> Reconfiguration Points </h3>
-You are given the opportunity to reconfigure the learning rate before every optimizer step (i.e., after every backprop). However, there is no need to actually change it every step (the same value can be passed). Note that this step-wise interaction with the target algorithm must occur through an OpenAI Gym interface, where gym.Env.reset simulates the target algorithm up until the first reconfiguration point and gym.Env.step until the next reconfiguration point.
+At every epoch, the action consists of the selected inner agent and the corresponding hyperparameters being set. The outer environment keeps a track of the agents instantiated so far and restarts from the last instantiated agent. 
 <h3> Target Problem Distribution </h3>
-<p> The objective in this challenge is to optimally control the learning rate of AdamW across a variety of different learning tasks and pipelines. To this end, target problem instances randomly vary various aspects of the task and pipeline:
-<dl>
-  <dt>dataset</dt>
-  <dd>The dataset used for training (one of MNIST, CIFAR-10, Fashion-MNIST)</dd>
-  <dt>model</dt>
-  <dd>The neural network model that is being optimized. This can either be a small MLP or simple convnet, varying in number of layers, units/filters per layer, filter sizes, activations, and usage of batchnorm.</dd>
-  <dt>optimizer_params</dt>
-  <dd>The values for the other AdamW hyperparameters (e.g., weight decay).</dd>
-  <dt>loss</dt>
-  <dd>Loss criterion to be minimized. In the challenge, all instances use cross entropy loss. </dd>
-  <dt>batch_size</dt>
-  <dd>The number of samples in a mini-batch, varies from 16 to 256 </dd>
-  <dt>fraction_of_dataset</dt>
-  <dd>Each of the used datasets specifies a train/test split. However, not every pipeline will use all train examples. This instance feature specifies the fraction of the training data that will be used as dataset (either for parameter updates or evaluation)  </dd>
-  <dt>train_validation_ratio</dt>
-  <dd>This instance feature specifies the fraction of the used dataset used for training (remainder is used for evaluation) </dd>
-  <dt>loaders</dt>
-  <dd>The triplet of Pytorch dataloaders that will be used to load the train/validation/test data. These determine the specific samples included in each partition (mini-batch).</dd>
-  <dt>cutoff</dt>
-  <dd>The budget available for optimization in number of optimization steps. After cutoff steps, training will be terminated. This value varies strongly (300-3600 steps), but for the challenge is set such that (i) we terminate after an N epochs and (ii) the wall-clock time on the evaluation machine for each instance is roughly comparable (30+-15s). </dd>
-  <dt>crash_penalty</dt>
-  <dd>The cost of failing to failing to find a model with evaluation loss < crash_penalty (e.g., due to divergence or crashes in the first epoch). This is set to the expected loss of a random model (i.e., ln(10) in the competition). </dd>
-</dl>
-and your solution policy should aim to perform well across all of these.</p>
-<h3> Cost Metric </h3>
-<p> The objective is to train a model with good generalization performance. As per-instance cost metric, the challenge therefore uses the cross entropy loss on the test partition of the model returned by the training pipeline. If the training for some reason fails to return a model, the cost will equal the crash_penalty.</p>
-<h3> Dynamic Configuration Policy </h3>
-<p>
-Solution policies may reconfigure the learning rate based on variety of different information. For instance, they may use:
-<ul>
-<li>Observations of the dynamic state of the training pipeline (provided at every reconfiguration point through DACPolicy.act)
-<dl>
-  <dt>steps</dt>
-  <dd>The number of optimization steps performed thus far</dd>
-  <dt>loss</dt>
-  <dd>The loss for each sample in the current mini-batch</dd>
-  <dt>validation_loss</dt>
-  <dd>At the end of each epoch, equal to the average loss on the validation set (None otherwise)</dd>
-  <dt>crashed</dt>
-  <dd>Indicates that execution terminated prematurely (done will also be true)</dd>
-</dl>
-</li>
-<li>The entire history of these state observations within the current test run (it may be stateful within a single test run, but not across, i.e., DACPolicy.reset should reset that state)<li>
-<li>Features of the current target problem instance (except for the loaders)</li>
-<li>A random number generator (as long as it is seeded using DACPolicy.seed and deterministic otherwise)</li>
-</ul>
-We provide various examples of possible solution policies in the competition repo. Note that the challenge is looking for creative solutions and therefore aims to minimally constrain the policy space. That being said, your solution policy should ...
+<p> The objective of this competition to create a dynamic schedule of selected agents and corresponding hyperparameters. You are free to stick with one agent and only learning rate schedule, or change multiple hyperparameters, or even go for a schedule of selected agents and corresponding hyperparameters.  
+
+We provide some examples of possible solution policies in the competition repo. Note that the challenge is looking for creative solutions and therefore aims to minimally constrain the policy space. That being said, your solution policy should ...
 <ul>
 <li>correctly implement the standard DACPolicy interface</li>
-<li>not transfer experience across test runs </li>
-<li>only interact with the training pipeline by changing the learning rate. In particular, while it may read, it may not modify the instance or dynamic state of the training pipeline in any way.</li>
+<li>Not transfer experience across test runs </li>
+<li>only interact with the training pipeline by changing the hyperparameters. In particular, while it may read, it may not modify the instance or dynamic state of the training pipeline in any way.</li>
 <li>impose limited overhead as to not violate the evaluation resource constraints.</li>
-<li>not explicitely overfit the target instance distribution, i.e. it should not fail when applied to an out of distribution instance. For example, when using a different dataset.</li>
+<li>not explicitely overfit the target instance distribution, i.e. it should not fail when applied to an out of distribution instance. For example, with context values sampled from a different distribution than the one provided during training.</li>
 <li>not rely on information that would be not available in a real world setting, e.g., info about the test set.</li>
 </ul>
+
 The organizers retain the right to disqualify submissions whose solution policy violates these constraints. Note that some constraints may leave room for interpretation, in doubt, please contact one of the organizers.
 </p>
