@@ -9,27 +9,26 @@
 <h3> Target Agent </h3>
 For this competition, the target agent implements a Stable Baselines 3 training pipeline optimizing the parameters of a deep RL agent. We allow the target to be selected from among 3 common algorithms implemented in Stable Baselines 3: <i>DDPG, PPO</i> and <i>SAC</i>.
 <h3> Dynamically Reconfigurable Parameters </h3>
-These constitute the action space of the outer environment and are passed as a dict (TODO: link to exmaple). The dict consists of the name of the algorithm (one of the 3 mentioned above) to be used for the next epoch along with all the respective hyperparameters from the Stable Baselines 3 implementations. However, it needs to be noted that certain hyperparameters can only be applied at the first time an agent is instantiated, and thus, cannot be changed afterwards(TODO: how do participants know which ones these are?).
+These constitute the action space of the outer environment and are passed as a dict (See https://github.com/automl-private/DAC4RL/blob/main/rlenv/RLEnv.py). The dict consists of the name of the algorithm (one of the 3 mentioned above) to be used for the next epoch along with all the respective hyperparameters from the Stable Baselines 3 implementations. However, it needs to be noted that certain hyperparameters can only be applied at the first time an agent is instantiated, and thus, cannot be changed afterwards(For example, the clip range. for more details, please see the documentation for the hyperparameters in sb3 at https://stable-baselines3.readthedocs.io/en/master/).
 <h3> Reconfiguration Points </h3>
-At every outer environment step, the action consists of the selected inner agent's algorithm and the corresponding hyperparameters being set. The outer environment keeps a track of the agents instantiated so far and warm-starts the agent to be applied at the next outer environment step with the last instantiated agent for the selected algorithm type (i.e., the Neural Network parameters are set to the same values as the last step when the selected algorithm was used but the hyperparameters are set to the newly passed values). (TODO: how does it keep track?).
+At every outer environment step, the action consists of the selected inner agent's algorithm and the corresponding hyperparameters being set. The outer environment keeps a track of the agents instantiated so far and warm-starts the agent to be applied at the next outer environment step with the last instantiated agent for the selected algorithm type (i.e., the Neural Network parameters are set to the same values as the last step when the selected algorithm was used but the hyperparameters are set to the newly passed values). In the meta-environment, this is tracked using a distionary of already instantiated models which is queried each time an algorithm is set.
 <h3> DAC Policy </h3>
 This is the policy that needs to be designed and submitted by the participants of the competition. It acts by setting the hyperparameters of the target agent. The policy can be, e.g., any manually designed heuristic such as an annealed learning rate schedule or it could even be something automatic that sets an online hyperparameter schedule by learning across different problem instances.
 <!-- The objective of this competition to create a dynamic schedule of selected agents and corresponding hyperparameters. You are free to stick with one agent and only learning rate schedule, or change multiple hyperparameters, or even go for a schedule of selected agents and corresponding hyperparameters. -->
 <h3> Target Environment Distribution </h3>
 <ul>
 <li>CARLPendulumEnv</li>
-  <ul>
-    <li>TODO: Add names of context features/permalinks to their definition in the code. For each env.
-  </ul>
 <li>CARLAcrobotEnv</li>
 <li>CARLMountainCarContinuousEnv</li>
 <li>CARLLunarLanderEnv</li>
 <li>CARLCartPoleEnv</li>
 </ul>
 
+<p>The context features that vary for each of these environments can be found in the generatoŕ file in the competition repository (see https://github.com/automl-private/DAC4RL/blob/main/rlenv/generators.py).
+
 
 <p>
-We provide some examples of possible solution policies in the competition repo (TODO: add link). The challenge is looking for creative solutions and therefore aims to minimally constrain the policy space. That being said, your solution policy should...
+We provide some examples of possible solution policies in the competition repo (See https://github.com/automl-private/DAC4RL/tree/main/baselines). The challenge is looking for creative solutions and therefore aims to minimally constrain the policy space. That being said, your solution policy should...
 <ul>
 <li>correctly implement the standard DACPolicy interface</li>
 <li>not transfer experience across test runs </li> (TODO: clarify)
