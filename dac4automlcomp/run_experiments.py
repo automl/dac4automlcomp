@@ -28,9 +28,6 @@ def run_experiment(
     It takes a loader loading the DAC policy to be evaluated and tests the policy on
     a set of num_instances target problem instances and returns the resulting performances as a Numpy array.
 
-    #TODO Improve docstrings
-    # defining train/test splits and the distribution for the contexts of the DACEnv.
-
     Args:
         dac_policy_loader (Callable[[], DACPolicy]): Loads the policy to be evaluated (reloaded for every instance)
         dac_env_obj (DACEnv): The evaluation environment
@@ -38,10 +35,12 @@ def run_experiment(
         num_instances (int): The prefix of instances to evaluate the loaded policy on
         policy_seed (int): The seed determining the random seed for the policy's rng
         time_limit_sec (int): The wall-clock time limit for the entire evaluation
+        comp_track (str): Specifies whether we are executing a dac4rl or dac4sgd track experiment
 
     Returns:
         total_rewards: A Numpy array of performances with shape (num_instances,)
         duration (float): Duration of the evaluation in sec
+        per_env_stats (dict): Stats for each inner RL env; only returned for the DAC4RL track
 
     """
 
@@ -72,7 +71,7 @@ def run_experiment(
     dac_env_obj.seed(gen_seed)
     policy_seed_rng = np.random.RandomState(policy_seed)
 
-    start_time = time.time()  # TODO: Replace with a superior way of timing?
+    start_time = time.time() 
     duration = 0
     for i in range(num_instances):
         print("> Start evaluation on instance {}:".format(i))
@@ -96,8 +95,8 @@ def run_experiment(
             if comp_track == "dac4rl":
                 print(
                     set_ansi_escape
-                    + "\nInstance set to: "
-                    + (dac_env_obj.current_instance.dataset if comp_track == "dac4sgd" else dac_env_obj.current_instance.env_type)
+                    + "\nEnvironment of sampled instance set to: "
+                    + dac_env_obj.current_instance.env_type
                     + reset_ansi_escape
                 )
 
@@ -182,44 +181,30 @@ if __name__ == "__main__":
     args, unknown = parser.parse_known_args()
     print("Track:", args.competition_track + "\n")
 
-    # os.environ['OPENBLAS_NUM_THREADS'] = '1'
-    # print("os.environ:", os.environ)
-    # import resource
-    # print("resource.RLIMIT_NPROC, CPU:", resource.RLIMIT_NPROC, resource.RLIMIT_CPU)
 
     print("pip installing packages...\n")
     os.system("pip install -r " + args.submission_dir + "/requirements.txt")
-    # from dotenv import load_dotenv
-    # load_dotenv("/app/codalab/dac4automl/.env")
 
-    # os.environ['HTTP_PROXY'] = "http://web-proxy.rrzn.uni-hannover.de:3128"
-    # os.environ['HTTPS_PROXY'] = "http://web-proxy.rrzn.uni-hannover.de:3128"
+    os.environ['HTTP_PROXY'] = "http://web-proxy.rrzn.uni-hannover.de:3128"
+    os.environ['HTTPS_PROXY'] = "http://web-proxy.rrzn.uni-hannover.de:3128"
     print("os.environ:", os.environ)
-    print(os.system("cat /proc/cpuinfo"))
-    print(os.system("cat /proc/meminfo"))
-    # print(os.system("ls -R /app/codalab/dac4automl/"))
+    print("CPU info:\n", os.system("cat /proc/cpuinfo"))
+    print("Memory info:\n", os.system("cat /proc/meminfo"))
 
     # os.system("bash " + args.ingestion_dir + "/evaluate_submission.sh -i " +
     #             args.ingestion_dir + " -d " + args.submission_dir + " -f solution.py -o " +
     #             args.output_dir + " 2>&1")
 
     ingestion_dir = os.path.abspath(args.ingestion_dir)
-    # input_dir = os.path.abspath(args.input_dir)
     output_dir = os.path.abspath(args.output_dir)
-    # hidden_dir = os.path.abspath(args.hidden_dir)
-    # shared_dir = os.path.abspath(args.shared_dir)
     submission_dir = os.path.abspath(args.submission_dir)
     if verbose:
         print("\nUsing ingestion_dir: " + ingestion_dir)
-        # print("Using input_dir: " + input_dir)
         print("Using output_dir: " + output_dir)
-        # print("Using hidden_dir: " + hidden_dir)
-        # print("Using shared_dir: " + shared_dir)
         print("Using submission_dir: " + submission_dir + "\n")
 
 
     path.insert(0, args.submission_dir)
-    # print("path:", path)
 
     from solution import load_solution
 
@@ -247,7 +232,7 @@ if __name__ == "__main__":
         import rlenv
 
     from pathlib import Path
-    policy_loader = lambda : load_solution(path=Path(args.submission_dir))  # TODO assert it's a DACPolicy
+    policy_loader = lambda : load_solution(path=Path(args.submission_dir))
 
     env = gym.make(env_args["env_name"])
 
@@ -263,7 +248,7 @@ if __name__ == "__main__":
     if not os.path.exists(args.output_dir):
         os.makedirs(args.output_dir)
     fout = open(Path(args.output_dir) / Path('scores.txt'), 'w')
-    # for rew in total_rewards:
+
     if args.competition_track == "dac4sgd":
         for i, r in enumerate(total_rewards):
             fout.write("cid_{}: {} \n".format(i, -r))

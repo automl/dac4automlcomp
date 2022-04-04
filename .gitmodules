@@ -1,6 +1,6 @@
 [submodule "competition/program/DAC4RL"]
 	path = competition/program/DAC4RL
-	url = https://github.com/automl-private/DAC4RL.git
+	url = https://github.com/automl/DAC4RL.git
 [submodule "competition/program/DAC4SGD"]
 	path = competition/program/DAC4SGD
-	url = https://github.com/automl-private/DAC4SGD.git
+	url = https://github.com/automl/DAC4SGD.git

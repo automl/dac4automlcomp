@@ -9,7 +9,7 @@
 <h3> Target Agent </h3>
 For this competition, the target agent implements a Stable Baselines 3 training pipeline optimizing the parameters of a deep RL agent. We allow the target to be selected from among 3 common algorithms implemented in Stable Baselines 3: <i>DDPG, PPO</i> and <i>SAC</i>.
 <h3> Dynamically Reconfigurable Parameters </h3>
-These constitute the action space of the outer environment and are passed as a dict (See https://github.com/automl-private/DAC4RL/blob/main/rlenv/RLEnv.py). The dict consists of the name of the algorithm (one of the 3 mentioned above) to be used for the next epoch along with all the respective hyperparameters from the Stable Baselines 3 implementations. However, it needs to be noted that certain hyperparameters can only be applied at the first time an agent is instantiated, and thus, cannot be changed afterwards(For example, the clip range. for more details, please see the documentation for the hyperparameters in sb3 at https://stable-baselines3.readthedocs.io/en/master/).
+These constitute the action space of the outer environment and are passed as a dict (See "Basic Usage" under: https://github.com/automl/DAC4RL for an example and https://github.com/automl/DAC4RL/blob/main/rlenv/RLEnv.py for the internals). The dict consists of the name of the algorithm (one of the 3 mentioned above) to be used for the next epoch along with all the respective hyperparameters from the Stable Baselines 3 implementations. However, it needs to be noted that certain hyperparameters can only be applied at the first time an agent is instantiated, and thus, cannot be changed afterwards (For example, the clip range. for more details, please see the documentation for the hyperparameters in sb3 at https://stable-baselines3.readthedocs.io/en/master/).
 <h3> Reconfiguration Points </h3>
 At every outer environment step, the action consists of the selected inner agent's algorithm and the corresponding hyperparameters being set. The outer environment keeps a track of the agents instantiated so far and warm-starts the agent to be applied at the next outer environment step with the last instantiated agent for the selected algorithm type (i.e., the Neural Network parameters are set to the same values as the last step when the selected algorithm was used but the hyperparameters are set to the newly passed values). In the meta-environment, this is tracked using a distionary of already instantiated models which is queried each time an algorithm is set.
 <h3> DAC Policy </h3>
@@ -24,7 +24,7 @@ This is the policy that needs to be designed and submitted by the participants o
 <li>CARLCartPoleEnv</li>
 </ul>
 
-<p>The context features that vary for each of these environments can be found in the generatoŕ file in the competition repository (see https://github.com/automl-private/DAC4RL/blob/main/rlenv/generators.py).
+<p>The context features that vary for each of these environments can be found in the generatoŕ file in the competition repository (see https://github.com/automl/DAC4RL/blob/main/rlenv/generators.py).
 </p>
 
 <p>
@@ -33,14 +33,12 @@ Each of these (inner) environments will be run for 30,000 total timesteps and th
 
 
 <p>
-We provide some examples of possible solution policies in the competition repo (See https://github.com/automl-private/DAC4RL/tree/main/baselines). The challenge is looking for creative solutions and therefore aims to minimally constrain the policy space. That being said, your solution policy should...
+We provide some examples of possible solution policies in the competition repo (See https://github.com/automl/DAC4RL/tree/main/baselines). The challenge is looking for creative solutions and therefore aims to minimally constrain the policy space. That being said, your solution policy should...
 <ul>
 <li>correctly implement the standard DACPolicy interface</li>
-<li>not transfer experience across test runs </li> (TODO: clarify)
-<li>only interact with the training pipeline by changing the hyperparameters (including the algorithm). In particular, while it may read, it may not modify the instance or dynamic state (TODO: clarify what is dynamic state) of the training pipeline in any way.</li>
-<li>impose limited overhead as to not violate the evaluation resource constraints(TODO: link).</li>
-<li>not explicitly overfit the target instance distribution (TODO: clarify), i.e. it should not fail when applied to an out of distribution instance. For example, with context values sampled from a different distribution than the one provided during training.</li>
-<li>not rely on information that would not be available in a real world setting, e.g., info about the test set.</li>
+<li>only interact with the training pipeline by changing the hyperparameters (including the algorithm). In particular, while it may read, it may not modify the instance of the target agent's training pipeline in any way.</li>
+<li>impose limited overhead as to not violate the evaluation resource constraints (https://codalab.lisn.upsaclay.fr/competitions/3640#learn_the_details-evaluation).</li>
+<li>not explicitly overfit the target instance distribution, i.e. it should not fail when applied to an out of distribution instance. For example, with context values sampled from a different distribution than the one provided during training.</li>
 </ul>
 
 The organizers retain the right to disqualify submissions whose solution policy violates these constraints. Note that some constraints may leave room for interpretation, in doubt, please contact one of the organizers.
