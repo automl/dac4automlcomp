@@ -21,7 +21,7 @@ While DAC has been applied to Computer Vision problems before ([Daniel et al., 2
 - Goal: Dynamically adapt the learning rate of the SGD optimizer
 - Based on the extended version of the SGDBenchmark included in DACBench.
 - Provided baselines: Static learning rate, cosine annealing ([Loshchilov and Hutter, 2017](https://arxiv.org/pdf/1608.03983.pdf)), reduce learning rate on pleateu ([Pytorch](https://pytorch.org/); [Paszke et al., 2019](https://openreview.net/pdf?id=BJJsrmfCZ)) and a basic RL agent.
-- CodaLab competition page: TBA
+- CodaLab competition page: https://codalab.lisn.upsaclay.fr/competitions/3672
 
 ### Challenge: DAC4RL
 
@@ -30,7 +30,7 @@ In Reinforcement Learning, dynamic configuration is common but does not currentl
 - Goal: Dynamically adapt the hyperparameter configuration of a stable_baselines3 agent
 - Based on 5 CARL environments
 - Provided baselines: Static configurations and learned configuration schedule found by state-of-the-art AutoRL tool PB2 ([Parker-Holder et al., 2020](https://arxiv.org/pdf/2002.02518.pdf))
-- CodaLab competition page: TBA
+- CodaLab competition page: https://codalab.lisn.upsaclay.fr/competitions/3727
 
 ### Dates
 Submission starts on the **04.04.2022** and is possible throughout the training phase until the **18.06.2022 AOE**. Afterwards we will evaluate the submissions and announce the results at the AutoML-Conf 2022.
