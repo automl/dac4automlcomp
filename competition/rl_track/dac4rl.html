@@ -25,6 +25,11 @@ This is the policy that needs to be designed and submitted by the participants o
 </ul>
 
 <p>The context features that vary for each of these environments can be found in the generatoŕ file in the competition repository (see https://github.com/automl-private/DAC4RL/blob/main/rlenv/generators.py).
+</p>
+
+<p>
+Each of these (inner) environments will be run for 30,000 total timesteps and the outer environment will have 10 equally spaced reconfiguration points, i.e. one outer environment step corresponds to 3,000 inner environment steps.
+</p>
 
 
 <p>
