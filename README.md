@@ -5,7 +5,7 @@ The instructions below can also be found as part of the instructions for the ind
 
 ## Tracks
 DAC4RL track repo: https://github.com/automl/DAC4RL
-DAC4RL CodaLab page: https://codalab.lisn.upsaclay.fr/competitions/3640
+DAC4RL CodaLab page: https://codalab.lisn.upsaclay.fr/competitions/3727
 
 DAC4SGD track repo: https://github.com/automl/DAC4SGD
 DAC4SGD CodaLab page: https://codalab.lisn.upsaclay.fr/competitions/3672
