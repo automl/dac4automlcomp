@@ -4,9 +4,11 @@ This is the common python package for the two tracks of the DAC4AutoML competiti
 The instructions below can also be found as part of the instructions for the individual tracks in their individual repos.
 
 ## Tracks
-DAC4RL track: https://github.com/automl/DAC4RL
+DAC4RL track repo: https://github.com/automl/DAC4RL
+DAC4RL CodaLab page: https://codalab.lisn.upsaclay.fr/competitions/3640
 
-DAC4SGD track: https://github.com/automl/DAC4SGD
+DAC4SGD track repo: https://github.com/automl/DAC4SGD
+DAC4SGD CodaLab page: https://codalab.lisn.upsaclay.fr/competitions/3672
 
 ## Installation
 ```

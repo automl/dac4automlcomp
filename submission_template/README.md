@@ -8,7 +8,7 @@ Your submission **must include**:
 - `requirements.txt`: List all packages required by your solution here. Can be empty.
 - `solution.py`: Entry point for the evaluation. Must contain the method `load_solution() -> DACPolicy`.
 
-You can provide as many files as you want in your submission folder but be aware of the file size limit # TODO.
+You can provide as many files as you want in your submission folder but be aware of the file size limit.
 If you are unsure how to structure your submission please take a look at our examples in the challenges.
 
 ## Description
