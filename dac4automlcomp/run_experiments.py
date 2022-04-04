@@ -122,7 +122,7 @@ def run_experiment(
         if comp_track == "dac4rl":
             per_env_stats[curr_env_type]["reward"] += total_rewards[i]
 
-        print("- Total reward for instance: {}".format(total_rewards[i]))
+        print("\n- Total reward for instance: {}".format(total_rewards[i]))
         print("- Time elapsed: {} / {} sec".format(duration, time_limit_sec))
 
     return total_rewards, duration, per_env_stats if comp_track == "dac4rl" else None
@@ -153,14 +153,14 @@ if __name__ == "__main__":
         "-i",
         "--ingestion-dir",
         type=str,
-        default="DAC4AutoML_ingestion_program",
+        default="dac4automlcomp/",
         help="Location of ingestion program",
     )
     parser.add_argument(
         "-o",
         "--output-dir",
         type=str,
-        default="",
+        default="tmp_output",
         help="",
     )
     parser.add_argument(
@@ -260,6 +260,8 @@ if __name__ == "__main__":
     print("duration:", duration)
 
     # Write scores.txt
+    if not os.path.exists(args.output_dir):
+        os.makedirs(args.output_dir)
     fout = open(Path(args.output_dir) / Path('scores.txt'), 'w')
     # for rew in total_rewards:
     if args.competition_track == "dac4sgd":

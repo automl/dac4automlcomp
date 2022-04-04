@@ -4,6 +4,4 @@ __pycache__
 *.egg-info
 
 #DAC4AutoML_*
-data
-scores.txt
-competition_new
+tmp_output
