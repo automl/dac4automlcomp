@@ -93,15 +93,14 @@ def run_experiment(
 
                 per_env_stats[curr_env_type]["num_instances"] += 1
 
-            print(
-                set_ansi_escape
-                + "\nInstance set to: "
-                + (dac_env_obj.current_instance.dataset if comp_track == "dac4sgd" else dac_env_obj.current_instance.env_type)
-                + reset_ansi_escape
-            )
+            if comp_track == "dac4rl":
+                print(
+                    set_ansi_escape
+                    + "\nInstance set to: "
+                    + (dac_env_obj.current_instance.dataset if comp_track == "dac4sgd" else dac_env_obj.current_instance.env_type)
+                    + reset_ansi_escape
+                )
 
-
-                
             dac_policy_obj.reset(dac_env_obj.current_instance)
             done = False
             while not done:
@@ -109,15 +108,16 @@ def run_experiment(
                 obs, reward, done, info = dac_env_obj.step(config)
                 total_rewards[i] += reward
 
-
         duration = time.time() - start_time
         if duration > time_limit_sec:
+            limit_exceed_penalty = -1e6 if comp_track == "dac4rl" else -np.log(10)
+
             warnings.warn(
                 "TIME LIMIT EXCEEDED. Setting total reward for instance "
                 + str(i)
-                + " to -1e6."
+                + " to {}.".format(limit_exceed_penalty)
             )
-            total_rewards[i] = -1e6
+            total_rewards[i] = limit_exceed_penalty
         
         if comp_track == "dac4rl":
             per_env_stats[curr_env_type]["reward"] += total_rewards[i]
@@ -167,7 +167,7 @@ if __name__ == "__main__":
         "-g",
         "--gen-seed",
         type=int,
-        default=666,
+        default=42,
         help="The generator seed (determining the instance order)",
     )
     parser.add_argument(
@@ -227,15 +227,15 @@ if __name__ == "__main__":
         "env_name": "sgd-v0",
         "gen_seed": args.gen_seed,
         "policy_seed": args.gen_seed,
-        "num_instances": 80 if args.n_instances is None else args.n_instances,
-        "time_limit_sec": 3_600,
+        "num_instances": args.n_instances,
+        "time_limit_sec": 18_000,
     }
 
     args_rl = {
         "env_name": "dac4carl-v0",
         "gen_seed": args.gen_seed,
         "policy_seed": args.gen_seed,
-        "num_instances": 5 if args.n_instances is None else args.n_instances,
+        "num_instances": args.n_instances,
         "time_limit_sec": 10_800,
     }
 
@@ -249,12 +249,12 @@ if __name__ == "__main__":
     from pathlib import Path
     policy_loader = lambda : load_solution(path=Path(args.submission_dir))  # TODO assert it's a DACPolicy
 
-    env = gym.make(env_args["env_name"], total_timesteps=1e5)
+    env = gym.make(env_args["env_name"])
 
     print("num_instances:", args.n_instances)
 
-    total_rewards, duration, per_env_stats = run_experiment(policy_loader, env, comp_track=args.competition_track, **env_args)
-    total_rewards = [1.0/(i+1) if i >= len(total_rewards) else total_rewards[i] for i in range(args.n_instances)]
+    total_rewards, duration, per_env_stats = run_experiment(
+        policy_loader, env, comp_track=args.competition_track, **env_args)
 
     print("total_rewards:", total_rewards)
     print("duration:", duration)
