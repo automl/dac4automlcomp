@@ -44,7 +44,7 @@ We will provide you with certificates of participation (physical as well as digi
 - 100$ for third
 
 ### Organizers
-The DAC4AutoML competition is organized by the [AutoML Freiburg-Hannover group](automl.org).
+The DAC4AutoML competition is organized by the [AutoML Freiburg-Hannover group](https://www.automl.org/).
 
 
 <table class="center">
