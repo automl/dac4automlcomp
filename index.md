@@ -33,7 +33,7 @@ In Reinforcement Learning, dynamic configuration is common but does not currentl
 - CodaLab competition page: [https://codalab.lisn.upsaclay.fr/competitions/3727](https://codalab.lisn.upsaclay.fr/competitions/3727)
 
 ### Dates
-Submission starts on the **04.04.2022** and is possible throughout the training phase until the **18.06.2022 AOE**. Afterwards we will evaluate the submissions and announce the results at the AutoML-Conf 2022.
+Submission starts on the **04.04.2022** and is possible throughout the training phase until the ~~18.06.2022 AOE~~ **09.07.2022 AOE** (extended deadline). Afterwards we will evaluate the submissions and announce the results at the AutoML-Conf 2022.
 
 ### Awards
 
