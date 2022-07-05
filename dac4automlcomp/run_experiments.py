@@ -92,11 +92,12 @@ def run_experiment(
 
                 per_env_stats[curr_env_type]["num_instances"] += 1
 
-            if comp_track == "dac4rl":
                 print(
                     set_ansi_escape
-                    + "\nEnvironment of sampled instance set to: "
+                    + "\nEnvironment of sampled instance " + str(i) + " set to: "
                     + dac_env_obj.current_instance.env_type
+                    + "\nInitial obs: "
+                    + str(obs)
                     + reset_ansi_escape
                 )
 
@@ -120,6 +121,11 @@ def run_experiment(
         
         if comp_track == "dac4rl":
             per_env_stats[curr_env_type]["reward"] += total_rewards[i]
+            print("Latest evaluation reward for env of type: "
+                + curr_env_type
+                + " = "
+                + str(total_rewards[i])
+            )
 
         print("\n- Total reward for instance: {}".format(total_rewards[i]))
         print("- Time elapsed: {} / {} sec".format(duration, time_limit_sec))
