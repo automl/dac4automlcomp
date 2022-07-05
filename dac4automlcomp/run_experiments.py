@@ -185,8 +185,6 @@ if __name__ == "__main__":
     print("pip installing packages...\n")
     os.system("pip install -r " + args.submission_dir + "/requirements.txt")
 
-    os.environ['HTTP_PROXY'] = "http://web-proxy.rrzn.uni-hannover.de:3128"
-    os.environ['HTTPS_PROXY'] = "http://web-proxy.rrzn.uni-hannover.de:3128"
     print("os.environ:", os.environ)
     print("CPU info:\n", os.system("cat /proc/cpuinfo"))
     print("Memory info:\n", os.system("cat /proc/meminfo"))
@@ -221,7 +219,7 @@ if __name__ == "__main__":
         "gen_seed": args.gen_seed,
         "policy_seed": args.gen_seed,
         "num_instances": args.n_instances,
-        "time_limit_sec": 10_800,
+        "time_limit_sec": 36_000,
     }
 
     if args.competition_track == "dac4sgd":
